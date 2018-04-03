@@ -1,0 +1,3 @@
+cambiado relicion 0.*-1 a 0.*-0.* ya que un user puede ser seguido por varios y los user pueden seguir a varios o ninguno
+
+Cambiado el nombre de la relacion entre customer y newspaper e CreditCard a Subscribe
