@@ -40,6 +40,14 @@
 			</li>
 		</security:authorize>
 		
+		<li><a class="fNiv"><spring:message code="master.page.Newspaper" /></a>
+			<ul>
+				<li class="arrow"></li>
+				<li><a href="newspaper/list.do"><spring:message
+							code="master.page.NewspaperList" /></a></li>
+				
+			</ul></li>
+		
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
 		</security:authorize>

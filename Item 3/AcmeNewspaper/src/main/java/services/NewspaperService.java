@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import repositories.NewspaperRepository;
+import domain.Article;
 import domain.Newspaper;
 
 @Service
@@ -28,9 +30,9 @@ public class NewspaperService {
 
 	public Newspaper create() {
 		Newspaper result;
-
+		Collection<Article> articles= new ArrayList<>();
 		result = new Newspaper();
-
+		result.setArticles(articles);
 		return result;
 	}
 
