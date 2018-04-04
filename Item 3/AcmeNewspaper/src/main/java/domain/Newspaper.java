@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Newspaper {
+public class Newspaper extends DomainEntity {
 
 	//Relationships
 	private Collection<Article>	articles;

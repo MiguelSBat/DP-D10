@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Config {
+public class Config extends DomainEntity {
 
 	private Collection<String>	tabooWords;
 

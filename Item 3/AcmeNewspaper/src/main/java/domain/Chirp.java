@@ -15,7 +15,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Chirp {
+public class Chirp extends DomainEntity {
 
 	private String	title;
 	private Date	moment;

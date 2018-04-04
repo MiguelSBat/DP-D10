@@ -15,7 +15,7 @@ import org.hibernate.validator.constraints.Range;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class CreditCard {
+public class CreditCard extends DomainEntity {
 
 	private String	holderName;
 	private String	brandName;
