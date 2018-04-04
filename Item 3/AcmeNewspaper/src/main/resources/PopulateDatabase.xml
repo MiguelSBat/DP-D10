@@ -161,6 +161,11 @@
 	</bean>
 	
 	<bean id="newspaper1" class="domain.Newspaper">
+	<property name="title" value="titulo del periodico" />
+	<property name="description" value="descripcion del periodico" />
+	<property name="publicationDate" value="01/02/2014" />
+	<property name="publicity" value="false" />
+	<property name="picture" value="https://vignette.wikia.nocookie.net/medabots/images/7/73/Imagen_de_ejemplo.png" />
 		<property name="articles">
 			<list>
 				<ref bean="article1"/>
