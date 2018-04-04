@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -49,9 +50,7 @@ public class Article extends DomainEntity {
 	}
 
 	@NotNull
-	//	@List(value = {
-	//		@URL TODO:Testear esto
-	//	})
+	@ElementCollection
 	public Collection<String> getPictures() {
 		return this.pictures;
 	}

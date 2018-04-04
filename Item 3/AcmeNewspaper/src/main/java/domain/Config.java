@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
@@ -16,6 +17,7 @@ public class Config extends DomainEntity {
 
 
 	@NotNull
+	@ElementCollection
 	public Collection<String> getTabooWords() {
 		return this.tabooWords;
 	}
