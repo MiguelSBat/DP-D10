@@ -65,6 +65,17 @@
 			</list>
 		</property>
 	</bean>
+	<bean id="userAccount5" class="security.UserAccount">
+		<property name="username" value="user3" />
+		<property name="password" value="92877af70a45fd6a2ed7fe81e1236b78" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="USER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
 	
 	
 	<!-- Other domain beans come here -->	
@@ -147,6 +158,48 @@
 		<property name="followUp">
 			<list>
 			<ref bean="followUp6"/>
+			
+			</list>	
+		</property>
+	</bean>
+	<bean id="user3" class="domain.User">
+	<property name="userAccount" ref="userAccount5" />
+		<property name="name" value="userName3" />
+		<property name="surname" value="userSurname3" />
+		<property name="emailAddress" value="user3@mail.com" />
+		<property name="phoneNumber" value="user3PhoneNumber" />
+		<property name="postalAddress" value="user3PostalAdress" />
+		<property name="users">
+			<list>
+				<ref bean="user1"/>
+				<ref bean="user2"/>
+			</list>	
+		</property>
+		<property name="chirps">
+			<list>
+				
+			</list>	
+		</property>
+		<property name="newspapers">
+			<list>
+			<ref bean="newspaper3"/>
+			</list>	
+		</property>
+		<property name="articles">
+			<list>
+				<ref bean="article15"/>
+					<ref bean="article11"/>
+						<ref bean="article12"/>
+							<ref bean="article13"/>
+								<ref bean="article14"/>
+			</list>	
+		</property>
+		<property name="followUp">
+			<list>
+			<ref bean="followUp7"/>
+			<ref bean="followUp8"/>
+			<ref bean="followUp9"/>
+			<ref bean="followUp10"/>
 			
 			</list>	
 		</property>
@@ -276,6 +329,71 @@
 		<property name="draftMode" value="true" />
 	</bean>
 	
+		<bean id="article11" class="domain.Article">
+		<property name="title" value="articulo11" />
+		<property name="summary" value="Sumary" />
+		<property name="text" value="texto : Lorem ipsum dolormodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+		<property name="publishMoment" value="01/02/2014" />
+		<property name="pictures">
+			<list>
+			<value>http://imagen.png</value>
+			</list>	
+		</property>
+		<property name="draftMode" value="true" />
+	</bean>
+
+		<bean id="article12" class="domain.Article">
+		<property name="title" value="articulo12" />
+		<property name="summary" value="Sumary" />
+		<property name="text" value="texto : Lorem ipsum dolormodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+		<property name="publishMoment" value="01/02/2014" />
+		<property name="pictures">
+			<list>
+			<value>http://imagen.png</value>
+			</list>	
+		</property>
+		<property name="draftMode" value="true" />
+	</bean>
+	
+		<bean id="article13" class="domain.Article">
+		<property name="title" value="articulo13" />
+		<property name="summary" value="Sumary" />
+		<property name="text" value="texto : Lorem ipsum dolormodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+		<property name="publishMoment" value="01/02/2014" />
+		<property name="pictures">
+			<list>
+			<value>http://imagen.png</value>
+			</list>	
+		</property>
+		<property name="draftMode" value="true" />
+	</bean>
+	
+		<bean id="article14" class="domain.Article">
+		<property name="title" value="articulo14" />
+		<property name="summary" value="Sumary" />
+		<property name="text" value="texto : Lorem ipsum dolormodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+		<property name="publishMoment" value="01/02/2014" />
+		<property name="pictures">
+			<list>
+			<value>http://imagen.png</value>
+			</list>	
+		</property>
+		<property name="draftMode" value="true" />
+	</bean>
+	
+		<bean id="article15" class="domain.Article">
+		<property name="title" value="articulo15" />
+		<property name="summary" value="Sumary" />
+		<property name="text" value="texto : Lorem ipsum dolormodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+		<property name="publishMoment" value="01/02/2014" />
+		<property name="pictures">
+			<list>
+			<value>http://imagen.png</value>
+			</list>	
+		</property>
+		<property name="draftMode" value="true" />
+	</bean>
+	
 	<bean id="chirp1" class="domain.Chirp">
 		<property name="title" value="chirp1" />
 		<property name="moment" value="01/02/2014" />
@@ -326,7 +444,7 @@
 		<property name="CVV" value="124" />
 		<property name="newspapers">
 			<list>
-				<ref bean="newspaper1"/>
+				<ref bean="newspaper3"/>
 			</list>	
 		</property>
 	</bean>
@@ -339,7 +457,7 @@
 		<property name="CVV" value="124" />
 		<property name="newspapers">
 			<list>
-				<ref bean="newspaper2"/>
+			
 			</list>	
 		</property>
 	</bean>
@@ -433,6 +551,59 @@
 		<property name="article" ref="article6"/>
 		
 	</bean>
+		<bean id="followUp7" class="domain.FollowUp">
+		<property name="title" value="titulodelfollowup6" />
+		<property name="summary" value="sumario" />
+		<property name="publishMoment" value="01/02/2014" />
+		<property name="pictures">
+			<list>
+			<value>http://imagen.png</value>
+			</list>	
+		</property>
+		<property name="text" value="texto1"/>
+		<property name="article" ref="article11"/>
+		
+	</bean>
+		<bean id="followUp8" class="domain.FollowUp">
+		<property name="title" value="titulodelfollowup6" />
+		<property name="summary" value="sumario" />
+		<property name="publishMoment" value="01/02/2014" />
+		<property name="pictures">
+			<list>
+			<value>http://imagen.png</value>
+			</list>	
+		</property>
+		<property name="text" value="texto1"/>
+		<property name="article" ref="article12"/>
+		
+	</bean>
+		<bean id="followUp9" class="domain.FollowUp">
+		<property name="title" value="titulodelfollowup6" />
+		<property name="summary" value="sumario" />
+		<property name="publishMoment" value="01/02/2014" />
+		<property name="pictures">
+			<list>
+			<value>http://imagen.png</value>
+			</list>	
+		</property>
+		<property name="text" value="texto1"/>
+		<property name="article" ref="article13"/>
+		
+	</bean>
+		<bean id="followUp10" class="domain.FollowUp">
+		<property name="title" value="titulodelfollowup6" />
+		<property name="summary" value="sumario" />
+		<property name="publishMoment" value="01/02/2014" />
+		<property name="pictures">
+			<list>
+			<value>http://imagen.png</value>
+			</list>	
+		</property>
+		<property name="text" value="texto1"/>
+		<property name="article" ref="article14"/>
+		
+	</bean>
+	
 	<bean id="newspaper1" class="domain.Newspaper">
 	<property name="title" value="titulo del periodico" />
 	<property name="description" value="descripcion del periodico" />
@@ -451,7 +622,7 @@
 		</property>
 	</bean>
 	<bean id="newspaper2" class="domain.Newspaper">
-	<property name="title" value="titulo del periodico" />
+	<property name="title" value="titulo del periodico 2" />
 	<property name="description" value="descripcion del periodico" />
 	<property name="publicationDate" value="01/02/2014" />
 	<property name="publicity" value="false" />
@@ -463,6 +634,22 @@
 						<ref bean="article8"/>
 							<ref bean="article9"/>
 								<ref bean="article10"/>
+			</list>	
+		</property>
+	</bean>
+	<bean id="newspaper3" class="domain.Newspaper">
+	<property name="title" value="Periodico privado" />
+	<property name="description" value="descripcion del periodico" />
+	<property name="publicationDate" value="01/02/2014" />
+	<property name="publicity" value="true" />
+	<property name="picture" value="https://vignette.wikia.nocookie.net/medabots/images/7/73/Imagen_de_ejemplo.png" />
+		<property name="articles">
+			<list>
+				<ref bean="article11"/>
+					<ref bean="article12"/>
+						<ref bean="article13"/>
+							<ref bean="article14"/>
+								<ref bean="article15"/>
 			</list>	
 		</property>
 	</bean>
