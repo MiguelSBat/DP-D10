@@ -54,6 +54,18 @@
 		</property>
 	</bean>
 	
+	<bean id="userAccount4" class="security.UserAccount">
+		<property name="username" value="user2" />
+		<property name="password" value="3f02ebe3d7929b091e3d8ccfde2f3bc6" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="USER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- Other domain beans come here -->	
 	<bean id="user1" class="domain.User">
 	<property name="userAccount" ref="userAccount1" />
@@ -87,9 +99,40 @@
 				<ref bean="followUp1"/>
 			</list>	
 		</property>
-	
-	
 	</bean>
+	
+	<bean id="user2" class="domain.User">
+	<property name="userAccount" ref="userAccount4" />
+		<property name="name" value="userName2" />
+		<property name="surname" value="userSurname2" />
+		<property name="emailAddress" value="user2@mail.com" />
+		<property name="phoneNumber" value="user2PhoneNumber" />
+		<property name="postalAddress" value="user2PostalAdress" />
+		<property name="users">
+			<list>
+				<ref bean="user1"/>
+			</list>	
+		</property>
+		<property name="chirps">
+			<list>
+			
+			</list>	
+		</property>
+		<property name="newspapers">
+			<list>
+			</list>	
+		</property>
+		<property name="articles">
+			<list>
+			</list>	
+		</property>
+		<property name="followUp">
+			<list>
+			</list>	
+		</property>
+	</bean>
+	
+	
 	
 		<!-- Other domain beans come here -->	
 	<bean id="article1" class="domain.Article">

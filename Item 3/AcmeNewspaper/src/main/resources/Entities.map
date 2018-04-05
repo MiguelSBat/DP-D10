@@ -1,13 +1,15 @@
 #./src/main/resources/Entities.map
-#Wed Apr 04 17:09:45 CEST 2018
-creditcard1=19
-config=18
-article1=16
-followUp1=21
-chirp1=17
-newspaper1=22
-customer1=20
-userAccount3=14
-userAccount2=13
-userAccount1=12
-user1=15
+#Thu Apr 05 11:16:49 CEST 2018
+creditcard1=23
+config=22
+article1=20
+followUp1=25
+chirp1=21
+newspaper1=26
+userAccount4=17
+customer1=24
+userAccount3=16
+userAccount2=15
+userAccount1=14
+user2=19
+user1=18
