@@ -18,7 +18,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
-<!-- 
+
 <form:form action="newspaper/edit.do" modelAttribute="newspaper">
 
 	<form:hidden path="id" />
@@ -75,4 +75,3 @@
 	<br />
 
 </form:form>
---->
