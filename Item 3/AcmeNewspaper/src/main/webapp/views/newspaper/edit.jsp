@@ -18,60 +18,37 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
-
-<form:form action="newspaper/edit.do" modelAttribute="newspaper">
-
-	<form:hidden path="id" />
-	<form:hidden path="version" />
-
-	<form:label path="title">
-		<spring:message code="stage.title" />:
-	</form:label><br/>
-	<form:input path="title" />
-	<form:errors cssClass="error" path="title" />
-	<br/>
-	<br/>
-	
-	<form:label path="description">
-		<spring:message code="newspaper.description" />:
-	</form:label><br/>
-	<form:textarea path="description" />
-	<form:errors cssClass="error" path="description" />
-	<br/>
-	<br/>
-	
-	<form:label path="picture">
-		<spring:message code="newspaper.picture" />:
-	</form:label><br/>
-	<form:textarea path="picture" />
-	<form:errors cssClass="error" path="picture" />
-	<br/>
-	<br/>
-	
-	<!-- Guardamos en una variable el formato de la fecha según el idioma -->
-	<spring:message code="master.page.date.format" var="dateFormat" />
-	
-	 <form:label path="publicationDate">
-		<spring:message code="newspaper.publicationDate" />:
-	</form:label><br/>
-	<form:input path="publicationDate" placeholder="${dateFormat}" />
-	<form:errors cssClass="error" path="publicationDate" /><br /><br />
-	<br/>
-	<br/> 
-	
+<%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 
-	<input type="submit" name="save"
-		value="<spring:message code="newspaper.save" />" />&nbsp; 
+	<%-- <form:hidden path="id" />
+	<form:hidden path="version" /> 
+	<form:hidden path="replies" />
+	--%>
+	<form:form action="newspaper/edit.do" modelAttribute="newspaper">
+	<form:hidden path="newspaper" />
+	<form:hidden path="user" />  
+	<form:hidden path="moment" />  
 	
-	<jstl:if test="${newspaper.id != 0}">
-	<input type="submit" name="delete"
-		value="<spring:message code="newspaper.delete" />"/>
-	</jstl:if>
-		
-	<input type="button" name="cancel"
-		value="<spring:message code="newspaper.cancel" />"
-		onclick="javascript: relativeRedir('newspaper/admin/list.do');" />
+	<acme:textarea code="newspaper.title" path="text"/>
+	
+	<acme:textbox code="newspaper.description" path="description"/>
+
+	<spring:message code="newspaper.publicationDate" var="publicationDate"/>
+	<form:label path="publicationDate">${moment}</form:label>
+	<form:input path="publicationDate" placeholder="dd/mm/yyyy HH:MM"/>
+	<form:errors cssClass="error" path="publicationDate"/>
 	<br />
+	
+	<acme:textbox code="newspaper.picture" path="picture"/>
+	
+	<acme:submit name="save" code="newspaper.save"/>
 
-</form:form>
+	<%-- <security:authorize access="hasRole('ADMINISTRATOR')">
+	<acme:submit name="delete" code="comment.delete"/>
+	</security:authorize> --%>
+	
+	<acme:cancel url="" code="newspaper.cancel"/>
+	
+	</form:form>
+	

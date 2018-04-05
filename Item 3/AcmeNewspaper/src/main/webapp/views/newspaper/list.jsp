@@ -34,7 +34,7 @@
 	<display:column property="publicationDate" format="{0,date,${dateFormat}}" title="${publicationDateHeader}"/>
 	
 	<spring:message code="newspaper.picture" var="pictureHeader" />
-	<display:column property="picture" title="${pictureHeader}"/>
+	<display:column  title="${pictureHeader}"> <img src="${row.picture}" /> </display:column>
 
 </display:table>
 
