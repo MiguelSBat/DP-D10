@@ -101,6 +101,8 @@
 		<property name="newspapers">
 			<list>
 				<ref bean="newspaper1"/>
+				<ref bean="newspaper4"/>
+				<ref bean="newspaper5"/>
 			</list>	
 		</property>
 		<property name="articles">
@@ -218,7 +220,7 @@
 			<value>http://imagen.png</value>
 			</list>	
 		</property>
-		<property name="draftMode" value="true" />
+		<property name="draftMode" value="false" />
 	</bean>
 		<bean id="article2" class="domain.Article">
 		<property name="title" value="articulo2" />
@@ -230,7 +232,7 @@
 			<value>http://imagen.png</value>
 			</list>	
 		</property>
-		<property name="draftMode" value="true" />
+		<property name="draftMode" value="false" />
 	</bean>
 		<bean id="article3" class="domain.Article">
 		<property name="title" value="articulo3" />
@@ -242,7 +244,7 @@
 			<value>http://imagen.png</value>
 			</list>	
 		</property>
-		<property name="draftMode" value="true" />
+		<property name="draftMode" value="false" />
 	</bean>
 		<bean id="article4" class="domain.Article">
 		<property name="title" value="articulo4" />
@@ -254,7 +256,7 @@
 			<value>http://imagen.png</value>
 			</list>	
 		</property>
-		<property name="draftMode" value="true" />
+		<property name="draftMode" value="false" />
 	</bean>
 		<bean id="article5" class="domain.Article">
 		<property name="title" value="articulo5" />
@@ -266,7 +268,7 @@
 			<value>http://imagen.png</value>
 			</list>	
 		</property>
-		<property name="draftMode" value="true" />
+		<property name="draftMode" value="false" />
 	</bean>
 		<bean id="article6" class="domain.Article">
 		<property name="title" value="articulo6" />
@@ -278,7 +280,7 @@
 			<value>http://imagen.png</value>
 			</list>	
 		</property>
-		<property name="draftMode" value="true" />
+		<property name="draftMode" value="false" />
 	</bean>
 		<bean id="article7" class="domain.Article">
 		<property name="title" value="articulo7" />
@@ -290,7 +292,7 @@
 			<value>http://imagen.png</value>
 			</list>	
 		</property>
-		<property name="draftMode" value="true" />
+		<property name="draftMode" value="false" />
 	</bean>
 		<bean id="article8" class="domain.Article">
 		<property name="title" value="articulo8" />
@@ -302,7 +304,7 @@
 			<value>http://imagen.png</value>
 			</list>	
 		</property>
-		<property name="draftMode" value="true" />
+		<property name="draftMode" value="false" />
 	</bean>
 		<bean id="article9" class="domain.Article">
 		<property name="title" value="articulo9" />
@@ -314,7 +316,7 @@
 			<value>http://imagen.png</value>
 			</list>	
 		</property>
-		<property name="draftMode" value="true" />
+		<property name="draftMode" value="false" />
 	</bean>
 		<bean id="article10" class="domain.Article">
 		<property name="title" value="articulo10" />
@@ -326,7 +328,7 @@
 			<value>http://imagen.png</value>
 			</list>	
 		</property>
-		<property name="draftMode" value="true" />
+		<property name="draftMode" value="false" />
 	</bean>
 	
 		<bean id="article11" class="domain.Article">
@@ -339,7 +341,7 @@
 			<value>http://imagen.png</value>
 			</list>	
 		</property>
-		<property name="draftMode" value="true" />
+		<property name="draftMode" value="false" />
 	</bean>
 
 		<bean id="article12" class="domain.Article">
@@ -352,7 +354,7 @@
 			<value>http://imagen.png</value>
 			</list>	
 		</property>
-		<property name="draftMode" value="true" />
+		<property name="draftMode" value="false" />
 	</bean>
 	
 		<bean id="article13" class="domain.Article">
@@ -365,7 +367,7 @@
 			<value>http://imagen.png</value>
 			</list>	
 		</property>
-		<property name="draftMode" value="true" />
+		<property name="draftMode" value="false" />
 	</bean>
 	
 		<bean id="article14" class="domain.Article">
@@ -378,7 +380,7 @@
 			<value>http://imagen.png</value>
 			</list>	
 		</property>
-		<property name="draftMode" value="true" />
+		<property name="draftMode" value="false" />
 	</bean>
 	
 		<bean id="article15" class="domain.Article">
@@ -391,7 +393,7 @@
 			<value>http://imagen.png</value>
 			</list>	
 		</property>
-		<property name="draftMode" value="true" />
+		<property name="draftMode" value="false" />
 	</bean>
 	
 	<bean id="chirp1" class="domain.Chirp">
@@ -650,6 +652,30 @@
 						<ref bean="article13"/>
 							<ref bean="article14"/>
 								<ref bean="article15"/>
+			</list>	
+		</property>
+	</bean>
+	<bean id="newspaper4" class="domain.Newspaper">
+	<property name="title" value="Periodico en draft publico" />
+	<property name="description" value="descripcion del periodico" />
+	<property name="publicationDate" value="01/02/2014" />
+	<property name="publicity" value="false" />
+	<property name="picture" value="https://vignette.wikia.nocookie.net/medabots/images/7/73/Imagen_de_ejemplo.png" />
+		<property name="articles">
+			<list>
+				
+			</list>	
+		</property>
+	</bean>
+	<bean id="newspaper5" class="domain.Newspaper">
+	<property name="title" value="Periodico en draft privado" />
+	<property name="description" value="descripcion del periodico" />
+	<property name="publicationDate" value="01/02/2014" />
+	<property name="publicity" value="true" />
+	<property name="picture" value="https://vignette.wikia.nocookie.net/medabots/images/7/73/Imagen_de_ejemplo.png" />
+		<property name="articles">
+			<list>
+				
 			</list>	
 		</property>
 	</bean>
