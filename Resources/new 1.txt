@@ -1,0 +1,63 @@
+1.- Usuarios
+	1.1- Tipos de Usuario: Admin, Moderator, User, Business
+	1.2- Admin: Creación usuarios, banear actores, administrar sistema, todo lo de moderator
+	1.3- Moderador: Banear User y Business, banear anuncios, verificar business, 
+	1.4- User: Compra y vende
+	1.5- Business: Vende
+	1.6- Anónimo: Ver
+
+2.- Ventas:
+	2.1- Tipos de Ventas: Venta Express, Venta Auction (Tipos?), Venta Shop
+	2.2- Express: Un User vende un Item
+		2.2.3- Añades un precio
+	2.3- Shop: Vende X->inf Item																									
+	2.4- Auction: 
+		2.4.1- Tipos: Classic (Inmediato), Secret
+		2.4.- Son un solo Item
+	
+	======================================================= Clases ===============================================================
+	
+3.- Item:
+	3.1- Nombre, descripción, foto (opcional), 
+	3.2- 
+
+4.- Announcement:
+	4.1- Fecha publicación, Fecha fin, Item
+	4.2- Fecha fin por defecto 6 meses a no ser que sea premium
+	4.3- User 10 simultaneos
+	4.4- Bussiness 50 simultaneos
+	
+5.- ExpressAnnouncement:
+	5.1.- Precio
+6.- ShopAnnouncement:
+	6.1.- Precio,  Stock
+	6.2.- El stock se reduce cada vez que se vende 1. Si no hay stock sale un mensaje de aviso y no se puede comprar
+7.- AuctionAnnouncement:
+	7.1- Precio Mínimo, Fecha Fin (Max un mes), compra instantanea, si es secreta.
+	
+8.- Sale:
+	8.1- Comprador, fecha, dato de facturación, dato de envío, lineas ticket
+
+9.- Linea Ticket:
+	9.1 Announcement, Cantidad, 
+	
+10.- Carrito:
+	10.1 LineaCarrit
+	
+11.- Linea Carrito
+	11.1  Announcement, cantidad
+	
+12.- Banner
+	12.1 No se muestra a los premiums (sticky)
+	
+13.- Config:
+	13.1 Las fechas fin por defecto, el máximo de anuncios simultaneos por Usuario o Business son configurables, IVA, mensaje bienvenida, premium price, anuncios máximo premium
+
+14.- Bid:
+	14.-Price, AuctionAnnouncement, User
+
+Premium:
+		Announcement ilimitados
+	
+A++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++:
+	Paypal, Galería Imgur, (Elastic Search), Avisos por email, tags, Detectar addblock, disqus, Django
