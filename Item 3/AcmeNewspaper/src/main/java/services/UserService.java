@@ -70,10 +70,10 @@ public class UserService {
 		return result;
 	}
 
-	public Collection<User> findFollowing(final int userId) {
+	public Collection<User> findFollowingMe(final int userId) {
 		Collection<User> result;
 
-		result = this.userRepository.findFollowing(userId);
+		result = this.userRepository.findFollowingMe(userId);
 
 		return result;
 
@@ -94,7 +94,7 @@ public class UserService {
 		actor = this.actorService.findByPrincipal();
 		Assert.notNull(actor);
 		user = (User) actor;
-		final Collection<User> following = this.findFollowing(user.getId());
+		final Collection<User> following = this.findFollowingMe(user.getId());
 		following.remove(this.findOne(userId));
 
 	}

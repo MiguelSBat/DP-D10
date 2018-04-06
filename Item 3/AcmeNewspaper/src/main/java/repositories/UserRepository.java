@@ -13,6 +13,6 @@ import domain.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
 	@Query("select u from User u join u.users f where f.id=?1")
-	Collection<User> findFollowing(int id);
+	Collection<User> findFollowingMe(int id);
 
 }
