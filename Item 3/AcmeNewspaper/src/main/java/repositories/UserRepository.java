@@ -1,6 +1,8 @@
 
 package repositories;
 
+import java.util.Collection;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -11,6 +13,6 @@ import domain.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
 	@Query("select u from User u join u.users f where f.id=?1")
-	User findFollowing(int id);
+	Collection<User> findFollowing(int id);
 
 }
