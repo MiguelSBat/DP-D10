@@ -30,7 +30,7 @@ public class NewspaperService {
 
 	public Newspaper create() {
 		Newspaper result;
-		Collection<Article> articles= new ArrayList<>();
+		final Collection<Article> articles = new ArrayList<>();
 		result = new Newspaper();
 		result.setArticles(articles);
 		return result;
@@ -69,5 +69,9 @@ public class NewspaperService {
 	public void flush() {
 		this.newspaperRepository.flush();
 	}
-
+	public Collection<Newspaper> findByCriteria(final String criteria) {
+		final Collection<Newspaper> newspapers;
+		newspapers = this.newspaperRepository.findByCriteria(criteria);
+		return newspapers;
+	}
 }

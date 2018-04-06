@@ -26,9 +26,9 @@
 	<form:hidden path="replies" />
 	--%>
 	<form:form action="newspaper/edit.do" modelAttribute="newspaper">
-	<form:hidden path="newspaper" />
-	<form:hidden path="user" />  
-	<form:hidden path="moment" />  
+
+<!-- <form:hidden path="user" />   -->	
+	
 	
 	<acme:textarea code="newspaper.title" path="text"/>
 	
@@ -42,8 +42,39 @@
 	
 	<acme:textbox code="newspaper.picture" path="picture"/>
 	
+	<form:label path="newspaper.publicity">
+		<spring:message code="newspaper.publicity" />:
+	</form:label>
+	<form:select path="publicity">
+        <option value="">--</option>
+        <option value="true"><spring:message code="newspaper.private" /></option>
+        <option value="false"><spring:message code="newspaper.public" /></option>
+    </form:select>
+	
 	<acme:submit name="save" code="newspaper.save"/>
 
+
+<%-- <form:label path="articles">
+		<spring:message code="newspaper.articles" />:
+	</form:label>
+	<form:select id="articles" path="article">
+		<form:option value="0" label="----" />
+		
+		<jstl:forEach items="${articles}" var="article" >
+		<jstl:choose>
+			<jstl:when test="${article.id eq articleId}">
+				<form:option value="${article.id}" label="${article.title}" selected="true"/>
+			</jstl:when>
+		
+			<jstl:otherwise>
+			<form:option value="${article.id}" label="${article.title}" />
+			</jstl:otherwise>
+		</jstl:choose>
+		</jstl:forEach>
+		
+	</form:select> --%>
+	
+	
 	<%-- <security:authorize access="hasRole('ADMINISTRATOR')">
 	<acme:submit name="delete" code="comment.delete"/>
 	</security:authorize> --%>

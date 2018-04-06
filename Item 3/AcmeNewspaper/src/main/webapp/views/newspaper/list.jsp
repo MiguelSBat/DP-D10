@@ -18,13 +18,33 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
+
+
+
+<!-- search  -->
+
+<form action="newspaper/list.do" method="get">
+
+	
+
+
+	
+	<input name="criteria" />
+	<br />
+
+	<input type="submit"
+		value="search" />
+
+</form>
+
 
 <!-- Listing grid -->
 
 <display:table pagesize="5" class="displaytag" keepStatus="true" name="newspapers"  requestURI="newspaper/list.do" id="row">
 	
 	<spring:message code="newspaper.title" var="titleHeader" />
-	<display:column property="title" title="${titleHeader}"/>
+	<display:column title="${titleHeader}"><a href="newspaper/display.do?newspaperId=${row.id}"><jstl:out value="${row.title}"></jstl:out></a></display:column>
 	
 	<spring:message code="newspaper.description" var="descriptionHeader" />
 	<display:column property="description" title="${descriptionHeader}"/>
@@ -33,8 +53,16 @@
 	<spring:message code="master.page.date.format" var="dateFormat" />
 	<display:column property="publicationDate" format="{0,date,${dateFormat}}" title="${publicationDateHeader}"/>
 	
+	<spring:message code="newspaper.publicity" var="publicityHeader" />
+	<display:column title="${publicityHeader}">
+	
+	<jstl:if test="${row.publicity=='true'}"><spring:message code="newspaper.private" /></jstl:if>
+	<jstl:if test="${row.publicity=='false'}"><spring:message code="newspaper.public" /></jstl:if>
+
+	</display:column>
+	
 	<spring:message code="newspaper.picture" var="pictureHeader" />
-	<display:column  title="${pictureHeader}"> <img src="${row.picture}" /> </display:column>
+	<display:column  title="${pictureHeader}"> <img src="${row.picture}" height="150" width="250" /> </display:column>
 
 </display:table>
 

@@ -102,5 +102,11 @@ public class UserService {
 	public void flush() {
 		this.userRepository.flush();
 	}
+	public User UserByArticle(final int articleId) {
+		User result;
 
+		result = this.userRepository.UserByArticle(articleId);
+		Assert.notNull(result);
+		return result;
+	}
 }
