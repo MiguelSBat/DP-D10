@@ -2,6 +2,7 @@
 package services;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -10,7 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import repositories.ChirpRepository;
+import domain.Actor;
+import domain.Administrator;
 import domain.Chirp;
+import domain.User;
 
 @Service
 @Transactional
@@ -19,6 +23,12 @@ public class ChirpService {
 	//Managed Repository ----
 	@Autowired
 	private ChirpRepository	chirpRepository;
+
+	@Autowired
+	private ActorService	actorService;
+
+	@Autowired
+	private UserService		userService;
 
 
 	//Constructors
@@ -43,18 +53,30 @@ public class ChirpService {
 	}
 
 	public void delete(final Chirp chirp) {
-
+		Assert.isTrue(this.actorService.findByPrincipal() instanceof Administrator);
 		this.chirpRepository.delete(chirp);
 
 	}
 
 	public Chirp save(final Chirp chirp) {
 		Chirp result;
+		Actor principal;
+		User owner;
+		Collection<Chirp> chirps;
 
+		Assert.isTrue(chirp.getId() == 0);
+
+		principal = this.actorService.findByPrincipal();
+		owner = (User) principal;
+		chirp.setMoment(new Date());
 		result = this.chirpRepository.save(chirp);
+		chirps = owner.getChirps();
+		chirps.add(result);
+		owner.setChirps(chirps);
+		this.userService.save(owner);
+
 		return result;
 	}
-
 	public Chirp findOne(final int chirpId) {
 		Chirp result;
 
@@ -64,6 +86,22 @@ public class ChirpService {
 		return result;
 	}
 
+	public Collection<Chirp> findByUserId(final int userId) {
+		Collection<Chirp> result;
+
+		result = this.chirpRepository.findByUserId(userId);
+		Assert.notNull(result);
+
+		return result;
+	}
+	public Collection<Chirp> findByFollowed(final int userId) {
+		Collection<Chirp> result;
+
+		result = this.chirpRepository.findByUsersFollowed(userId);
+		Assert.notNull(result);
+
+		return result;
+	}
 	public void flush() {
 		this.chirpRepository.flush();
 	}

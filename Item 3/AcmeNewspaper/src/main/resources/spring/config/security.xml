@@ -47,6 +47,9 @@
 		<security:intercept-url pattern="/newspaper/edit.do" access="permitAll" />
 		<security:intercept-url pattern="/newspaper/create.do" access="permitAll" />
 		<security:intercept-url pattern="/newspaper/display.do" access="permitAll" />
+		
+		<security:intercept-url pattern="/chirp/list.do" access="permitAll" />
+		<security:intercept-url pattern="/user/chirp/list.do" access="hasRole('USER')" />
 			
 		<security:intercept-url pattern="/customer/action-1.do" access="hasRole('CUSTOMER')" /> 
 		<security:intercept-url pattern="/customer/action-2.do" access="hasRole('CUSTOMER')" /> 
