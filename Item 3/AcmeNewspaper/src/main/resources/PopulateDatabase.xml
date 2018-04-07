@@ -56,7 +56,7 @@
 	
 	<bean id="userAccount4" class="security.UserAccount">
 		<property name="username" value="user2" />
-		<property name="password" value="3f02ebe3d7929b091e3d8ccfde2f3bc6" />
+		<property name="password" value="7e58d63b60197ceb55a1c487989a3720" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
