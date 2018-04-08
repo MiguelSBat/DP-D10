@@ -64,6 +64,19 @@ public class ConfigService {
 		return result;
 	}
 
+	public Boolean isTaboo(final String string) {
+		Boolean result;
+		Collection<String> tabooWords;
+
+		tabooWords = this.findAll().iterator().next().getTabooWords();
+		result = false;
+		for (final String tabooWord : tabooWords)
+			if (string.contains(tabooWord))
+				result = true;
+
+		return result;
+	}
+
 	public void flush() {
 		this.configRepository.flush();
 	}
