@@ -75,4 +75,11 @@ public class ArticleService {
 		this.articleRepository.flush();
 	}
 
+	public Collection<Article> findByKeyword(final String keyword) {
+		Collection<Article> result;
+
+		result = this.articleRepository.findByKeyword(keyword);
+
+		return result;
+	}
 }

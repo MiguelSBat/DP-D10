@@ -25,10 +25,12 @@
 		<value>/views/newspaper/messages</value>
 		
 		<value>/views/administrator/messages</value>
+		<value>/views/actor/messages</value>
 		<value>/views/customer/messages</value>
 		<value>/views/profile/messages</value>
 		<value>/views/law/messages</value>
 		<value>/views/chirp/messages</value>
+		<value>/views/article/messages</value>
 	</util:list>
 
 </beans>
