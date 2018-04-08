@@ -73,4 +73,13 @@ public class User extends Actor {
 		this.followUp = followUp;
 	}
 
+	public void addArticle(final Article article) {
+		this.articles.add(article);
+
+	}
+	public void removeArticle(final Article article) {
+		this.articles.remove(article);
+
+	}
+
 }

@@ -36,9 +36,15 @@
 			<ul>
 				<li class="arrow"></li>
 				<li><a href="article/list.do"><spring:message
-							code="master.page.ArticleList" /></a></li>
-				
+							code="master.page.ArticleList" /></a>
+				</li>
+				<security:authorize access="hasRole('USER')">
+					<li><a href="user/article/list.do"><spring:message
+								code="master.page.myArticles" /></a>
+					</li>
+				</security:authorize>
 			</ul>
+			
 		</li>
 		
 		<li><a class="fNiv"><spring:message code="master.page.User" /></a>

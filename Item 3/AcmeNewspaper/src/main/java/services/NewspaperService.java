@@ -25,10 +25,9 @@ public class NewspaperService {
 	@Autowired
 	private NewspaperRepository	newspaperRepository;
 	@Autowired
-	private ActorService	actorService;
+	private ActorService		actorService;
 	@Autowired
-	private UserService	userService;
-
+	private UserService			userService;
 
 	@Autowired
 	private ArticleService		articleService;
@@ -42,8 +41,7 @@ public class NewspaperService {
 	public Newspaper create() {
 		Newspaper result;
 		final Collection<Article> articles = new ArrayList<>();
-		
-		
+
 		result = new Newspaper();
 		result.setArticles(articles);
 		return result;
@@ -69,13 +67,17 @@ public class NewspaperService {
 	}
 	public Newspaper save(final Newspaper newspaper) {
 		Newspaper result;
-		
-		result = this.newspaperRepository.save(newspaper);
-		User u= (User)this.actorService.findByPrincipal();
-		Collection<Newspaper> newspapers = u.getNewspapers();
-		newspapers.add(result);
-		u.setNewspapers(newspapers);
-		this.userService.save(u);
+
+		if (newspaper.getId() != 0)
+			result = this.newspaperRepository.save(newspaper);
+		else {
+			result = this.newspaperRepository.save(newspaper);
+			final User u = (User) this.actorService.findByPrincipal();
+			final Collection<Newspaper> newspapers = u.getNewspapers();
+			newspapers.add(result);
+			u.setNewspapers(newspapers);
+			this.userService.save(u);
+		}
 		return result;
 	}
 

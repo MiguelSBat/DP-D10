@@ -112,6 +112,7 @@
 				<ref bean="newspaper1"/>
 				<ref bean="newspaper4"/>
 				<ref bean="newspaper5"/>
+				<ref bean="newspaper6"/>
 			</list>	
 		</property>
 		<property name="articles">
@@ -691,6 +692,16 @@
 		<property name="articles">
 			<list>
 				
+			</list>	
+		</property>
+	</bean>
+	<bean id="newspaper6" class="domain.Newspaper">
+	<property name="title" value="titulo del periodico" />
+	<property name="description" value="descripcion del periodico" />
+	<property name="publicity" value="false" />
+	<property name="picture" value="https://vignette.wikia.nocookie.net/medabots/images/7/73/Imagen_de_ejemplo.png" />
+		<property name="articles">
+			<list>
 			</list>	
 		</property>
 	</bean>
