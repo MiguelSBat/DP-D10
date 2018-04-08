@@ -37,6 +37,14 @@
 	<spring:message code="chirp.moment" var="momentHeader" />
 	<display:column title="${momentHeader}"><jstl:out value="${row.moment}"></jstl:out></display:column>
 	
+	<security:authorize access="hasRole('ADMIN')">
+	<display:column>
+	<a href="administrator/chirp/delete.do?chirpId=${row.id }"><spring:message code="chirp.delete" /></a>
+	</display:column>
+	</security:authorize>
+	
 
 </display:table>
+</br>
+<security:authorize access="hasRole('USER')"><a href="user/chirp/create.do"><spring:message code="chirp.create" /></a></security:authorize>
 

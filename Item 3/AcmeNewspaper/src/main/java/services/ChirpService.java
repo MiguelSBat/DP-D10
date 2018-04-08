@@ -30,6 +30,9 @@ public class ChirpService {
 	@Autowired
 	private UserService		userService;
 
+	@Autowired
+	private ConfigService	configService;
+
 
 	//Constructors
 	public ChirpService() {
@@ -40,6 +43,7 @@ public class ChirpService {
 		Chirp result;
 
 		result = new Chirp();
+		result.setContainsTaboo(false);
 
 		return result;
 	}
@@ -53,7 +57,15 @@ public class ChirpService {
 	}
 
 	public void delete(final Chirp chirp) {
+		User user;
+		Collection<Chirp> chirps;
+
 		Assert.isTrue(this.actorService.findByPrincipal() instanceof Administrator);
+		user = this.userService.findByChirpId(chirp.getId());
+		chirps = user.getChirps();
+		chirps.remove(chirp);
+		user.setChirps(chirps);
+		this.userService.save(user);
 		this.chirpRepository.delete(chirp);
 
 	}
@@ -69,6 +81,8 @@ public class ChirpService {
 		principal = this.actorService.findByPrincipal();
 		owner = (User) principal;
 		chirp.setMoment(new Date());
+		if (this.configService.isTaboo(chirp.getTitle()) || this.configService.isTaboo(chirp.getDescription()))
+			chirp.setContainsTaboo(true);
 		result = this.chirpRepository.save(chirp);
 		chirps = owner.getChirps();
 		chirps.add(result);
@@ -99,6 +113,16 @@ public class ChirpService {
 
 		result = this.chirpRepository.findByUsersFollowed(userId);
 		Assert.notNull(result);
+
+		return result;
+	}
+	public Collection<Chirp> findByTabooWords() {
+		final Collection<Chirp> result;
+		Actor principal;
+
+		principal = this.actorService.findByPrincipal();
+		Assert.isTrue(principal instanceof Administrator);
+		result = this.chirpRepository.findByTabooWords();
 
 		return result;
 	}

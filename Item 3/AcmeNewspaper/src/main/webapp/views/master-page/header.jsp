@@ -20,25 +20,6 @@
 <div>
 	<ul id="jMenu">
 		<!-- Do not forget the "fNiv" class for the first level links !! -->
-		<security:authorize access="hasRole('ADMIN')">
-			<li><a class="fNiv"><spring:message	code="master.page.administrator" /></a>
-				<ul>
-					<li class="arrow"></li>
-					<li><a href="administrator/action-1.do"><spring:message code="master.page.administrator.action.1" /></a></li>
-					<li><a href="administrator/action-2.do"><spring:message code="master.page.administrator.action.2" /></a></li>					
-				</ul>
-			</li>
-		</security:authorize>
-		
-		<security:authorize access="hasRole('USER')">
-			<li><a class="fNiv"><spring:message	code="master.page.user" /></a>
-				<ul>
-					<li class="arrow"></li>
-					<li><a href="user/chirp/list.do"><spring:message code="master.page.user.chirps.followed" /></a></li>
-									
-				</ul>
-			</li>
-		</security:authorize>
 		
 		<li><a class="fNiv"><spring:message code="master.page.Newspaper" /></a>
 			<ul>
@@ -60,9 +41,12 @@
 				</a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="profile/action-1.do"><spring:message code="master.page.profile.action.1" /></a></li>
-					<li><a href="profile/action-2.do"><spring:message code="master.page.profile.action.2" /></a></li>
-					<li><a href="profile/action-3.do"><spring:message code="master.page.profile.action.3" /></a></li>					
+					<security:authorize access="hasRole('ADMIN')">
+					<li><a href="administrator/chirp/list.do"><spring:message code="master.page.administrator.chirps" /></a></li>
+					</security:authorize>		
+					<security:authorize access="hasRole('USER')">
+					<li><a href="user/chirp/list.do"><spring:message code="master.page.user.chirps.followed" /></a></li>
+					</security:authorize>			
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>

@@ -18,4 +18,7 @@ public interface ChirpRepository extends JpaRepository<Chirp, Integer> {
 	@Query("select c from User u join u.users f join f.chirps c where u.id=?1")
 	Collection<Chirp> findByUsersFollowed(int id);
 
+	@Query("select c from Chirp c where c.containsTaboo=true")
+	Collection<Chirp> findByTabooWords();
+
 }
