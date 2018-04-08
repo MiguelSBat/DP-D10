@@ -109,4 +109,11 @@ public class UserService {
 		Assert.notNull(result);
 		return result;
 	}
+	public User findByChirpId(final int chirpId) {
+		User result;
+
+		result = this.userRepository.findByChirpId(chirpId);
+
+		return result;
+	}
 }
