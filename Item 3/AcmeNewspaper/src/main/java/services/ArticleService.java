@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import repositories.ArticleRepository;
+import domain.Actor;
+import domain.Administrator;
 import domain.Article;
 
 @Service
@@ -19,6 +21,9 @@ public class ArticleService {
 	//Managed Repository ----
 	@Autowired
 	private ArticleRepository	articleRepository;
+
+	@Autowired
+	private ActorService		actorService;
 
 
 	//Constructors
@@ -43,11 +48,13 @@ public class ArticleService {
 	}
 
 	public void delete(final Article article) {
+		Actor principal;
 
+		principal = this.actorService.findByPrincipal();
+		Assert.isTrue(principal instanceof Administrator);
 		this.articleRepository.delete(article);
 
 	}
-
 	public Article save(final Article article) {
 		Article result;
 
