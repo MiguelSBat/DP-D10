@@ -77,10 +77,10 @@ public class NewspaperController extends AbstractController {
 		newspaper = this.newspaperService.findOne(newspaperId);
 		final Collection<Article> articles = newspaper.getArticles();
 		final TreeMap<Integer, User> mapaMegaComplejo = new TreeMap<>();
-		System.out.println("adsdasd");
+		
 		for (final Article a : articles) {
 			u = this.userService.UserByArticle(a.getId());
-			System.out.println(u);
+		
 			mapaMegaComplejo.put(a.getId(), u);
 		}
 		result = new ModelAndView("newspaper/display");

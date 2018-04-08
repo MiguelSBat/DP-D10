@@ -79,6 +79,15 @@
 	
 	
 	<!-- Other domain beans come here -->	
+	<bean id="admin1" class="domain.Administrator">
+	<property name="userAccount" ref="userAccount2" />
+		<property name="name" value="Paco" />
+		<property name="surname" value="Samper Villagrán" />
+		<property name="emailAddress" value="ponsavi@acme.org" />
+		<property name="phoneNumber" value="+34 (545) 6565" />
+		<property name="postalAddress" value="Calle Fontenla, 2" />
+	
+	</bean>
 	<bean id="user1" class="domain.User">
 	<property name="userAccount" ref="userAccount1" />
 		<property name="name" value="Pepón" />
