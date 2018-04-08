@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import repositories.NewspaperRepository;
+import domain.Actor;
+import domain.Administrator;
 import domain.Article;
 import domain.Newspaper;
 
@@ -21,6 +23,12 @@ public class NewspaperService {
 	//Managed Repository ----
 	@Autowired
 	private NewspaperRepository	newspaperRepository;
+
+	@Autowired
+	private ActorService		actorService;
+
+	@Autowired
+	private ArticleService		articleService;
 
 
 	//Constructors
@@ -45,11 +53,15 @@ public class NewspaperService {
 	}
 
 	public void delete(final Newspaper newspaper) {
+		final Actor principal;
 
+		principal = this.actorService.findByPrincipal();
+		Assert.isTrue(principal instanceof Administrator);
+		for (final Article a : newspaper.getArticles())
+			this.articleService.delete(a);
 		this.newspaperRepository.delete(newspaper);
 
 	}
-
 	public Newspaper save(final Newspaper newspaper) {
 		Newspaper result;
 
