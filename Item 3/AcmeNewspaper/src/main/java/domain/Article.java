@@ -42,7 +42,6 @@ public class Article extends DomainEntity {
 		return this.text;
 	}
 
-	@NotNull
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	public Date getPublishMoment() {
