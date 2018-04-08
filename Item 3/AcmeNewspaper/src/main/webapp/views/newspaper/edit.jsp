@@ -36,7 +36,7 @@
 
 	<spring:message code="newspaper.publicationDate" var="publicationDate"/>
 	<form:label path="publicationDate">${publicationDate}</form:label>
-	<form:input path="publicationDate" placeholder="dd/mm/yyyy HH:MM"/>
+	<form:input path="publicationDate" placeholder="dd/mm/yyyy"/>
 	<form:errors cssClass="error" path="publicationDate"/>
 	<br />
 	
