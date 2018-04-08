@@ -1,5 +1,5 @@
 <%--
- * list.jsp
+ * edit.jsp
  *
  * Copyright (C) 2017 Universidad de Sevilla
  * 
@@ -21,22 +21,12 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 
-
-
-
-<!-- Listing grid -->
-
-<display:table pagesize="5" class="displaytag" name="chirps"  requestURI="${requestURI}" id="row">
-
-	<spring:message code="chirp.title" var="titleHeader" />
-	<display:column title="${titleHeader}"><jstl:out value="${row.title}"></jstl:out></display:column>
+	<form:form action="user/chirp/edit.do" modelAttribute="chirp">
 	
-	<spring:message code="chirp.description" var="descriptionHeader" />
-	<display:column title="${descriptionHeader}"><jstl:out value="${row.description}"></jstl:out></display:column>
+	<acme:textbox code="chirp.title" path="title"/>
+	<acme:textarea code="chirp.description" path="description"/>
 	
-	<spring:message code="chirp.moment" var="momentHeader" />
-	<display:column title="${momentHeader}"><jstl:out value="${row.moment}"></jstl:out></display:column>
+	<acme:submit name="save" code="chirp.save"/>
 	
-
-</display:table>
-
+	</form:form>
+	

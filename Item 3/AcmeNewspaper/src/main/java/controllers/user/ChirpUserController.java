@@ -3,8 +3,11 @@ package controllers.user;
 
 import java.util.Collection;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -42,7 +45,7 @@ public class ChirpUserController extends AbstractController {
 
 		principal = this.actorService.findByPrincipal();
 		chirps = this.chirpService.findByFollowed(principal.getId());
-		result = new ModelAndView("user/chirp/list");
+		result = new ModelAndView("chirp/list");
 		result.addObject("chirps", chirps);
 
 		return result;
@@ -57,6 +60,29 @@ public class ChirpUserController extends AbstractController {
 
 		chirp = this.chirpService.create();
 		result = this.createEditModelAndView(chirp);
+
+		return result;
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	public ModelAndView save(@Valid final Chirp chirp, final BindingResult binding) {
+		ModelAndView result;
+		Actor principal;
+
+		if (binding.hasErrors())
+			result = this.createEditModelAndView(chirp);
+		else
+			try {
+				this.chirpService.save(chirp);
+				principal = this.actorService.findByPrincipal();
+				result = new ModelAndView("redirect:/chirp/list.do?userId=" + principal.getId());
+			} catch (final Throwable oops) {
+				String errorMessage = "category.commit.error";
+
+				if (oops.getMessage().contains("message.error"))
+					errorMessage = oops.getMessage();
+				result = this.createEditModelAndView(chirp, errorMessage);
+			}
 
 		return result;
 	}
