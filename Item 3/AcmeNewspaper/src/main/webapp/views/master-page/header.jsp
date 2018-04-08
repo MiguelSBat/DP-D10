@@ -26,7 +26,10 @@
 				<li class="arrow"></li>
 				<li><a href="newspaper/list.do"><spring:message
 							code="master.page.NewspaperList" /></a></li>
-				
+				<security:authorize access="hasRole('USER')">
+				<li><a href="newspaper/create.do"><spring:message
+							code="master.page.NewspaperCreate" /></a></li>
+				</security:authorize>
 			</ul></li>
 		
 		<li><a class="fNiv"><spring:message code="master.page.Article" /></a>

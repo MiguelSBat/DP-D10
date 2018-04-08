@@ -21,28 +21,29 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 
-	<%-- <form:hidden path="id" />
-	<form:hidden path="version" /> 
-	<form:hidden path="replies" />
-	--%>
+	
+	
 	<form:form action="newspaper/edit.do" modelAttribute="newspaper">
 
-<!-- <form:hidden path="user" />   -->	
+
 	
+	<form:hidden path="id" />
+	<form:hidden path="version" /> 
 	
-	<acme:textarea code="newspaper.title" path="text"/>
+	<acme:textarea code="newspaper.title" path="title"/>
 	
 	<acme:textbox code="newspaper.description" path="description"/>
 
 	<spring:message code="newspaper.publicationDate" var="publicationDate"/>
-	<form:label path="publicationDate">${moment}</form:label>
+	<form:label path="publicationDate">${publicationDate}</form:label>
 	<form:input path="publicationDate" placeholder="dd/mm/yyyy HH:MM"/>
 	<form:errors cssClass="error" path="publicationDate"/>
 	<br />
 	
+	
 	<acme:textbox code="newspaper.picture" path="picture"/>
 	
-	<form:label path="newspaper.publicity">
+	<form:label path="publicity">
 		<spring:message code="newspaper.publicity" />:
 	</form:label>
 	<form:select path="publicity">
@@ -54,10 +55,10 @@
 	<acme:submit name="save" code="newspaper.save"/>
 
 
-<%-- <form:label path="articles">
+<%--  <form:label path="articles">
 		<spring:message code="newspaper.articles" />:
 	</form:label>
-	<form:select id="articles" path="article">
+	<form:select id="articles" path="articles">
 		<form:option value="0" label="----" />
 		
 		<jstl:forEach items="${articles}" var="article" >
@@ -72,7 +73,7 @@
 		</jstl:choose>
 		</jstl:forEach>
 		
-	</form:select> --%>
+	</form:select>  --%>
 	
 	
 	<%-- <security:authorize access="hasRole('ADMINISTRATOR')">

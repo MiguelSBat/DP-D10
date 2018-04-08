@@ -2,6 +2,7 @@
 package controllers;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.TreeMap;
 
 import javax.validation.Valid;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ArticleService;
 import services.NewspaperService;
 import services.UserService;
 import domain.Article;
@@ -28,6 +30,8 @@ public class NewspaperController extends AbstractController {
 
 	@Autowired
 	private NewspaperService	newspaperService;
+	@Autowired
+	private ArticleService	articleService;
 	@Autowired
 	private UserService			userService;
 
@@ -44,10 +48,30 @@ public class NewspaperController extends AbstractController {
 	public ModelAndView create() {
 		ModelAndView result;
 		Newspaper newspaper;
-
+		
 		newspaper = this.newspaperService.create();
 		result = this.createEditModelAndView(newspaper);
-
+		
+		//En el caso de que necesite meter los newspapers directamente en el create
+//		Muestro los articulos disponibles(ver que es mas optimo,esto o una query compleja)
+//		Collection<Article> articles = this.articleService.findAll();
+//		Collection<Newspaper> newspapers= this.newspaperService.findAll();
+//		Collection<Article> articleWithoutNewspaper = new HashSet<>();
+//		for(Article a: articles){
+//			boolean libre =true;
+//			for(Newspaper n:newspapers){
+//			if(n.getArticles().contains(a)){
+//			libre = false;
+//			}
+//			}
+//		if(libre){
+//			articleWithoutNewspaper.add(a);
+//		}
+//		}
+		
+		
+		
+//		result.addObject("articles", articleWithoutNewspaper);
 		return result;
 	}
 
@@ -114,7 +138,7 @@ public class NewspaperController extends AbstractController {
 				this.newspaperService.save(newspaper);
 				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
-				String errorMessage = "category.commit.error";
+				String errorMessage = "newspaper.commit.error";
 
 				if (oops.getMessage().contains("message.error"))
 					errorMessage = oops.getMessage();
