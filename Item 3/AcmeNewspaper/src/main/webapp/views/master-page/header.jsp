@@ -29,6 +29,24 @@
 				
 			</ul></li>
 		
+		<li><a class="fNiv"><spring:message code="master.page.Article" /></a>
+			<ul>
+				<li class="arrow"></li>
+				<li><a href="article/list.do"><spring:message
+							code="master.page.ArticleList" /></a></li>
+				
+			</ul>
+		</li>
+		
+		<li><a class="fNiv"><spring:message code="master.page.User" /></a>
+			<ul>
+				<li class="arrow"></li>
+				<li><a href="user/list.do"><spring:message
+							code="master.page.UserList" /></a></li>
+				
+			</ul>
+		</li>
+		
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
 		</security:authorize>

@@ -47,6 +47,14 @@ public class ArticleService {
 		return result;
 	}
 
+	public Collection<Article> findAllPublished() {
+		Collection<Article> result;
+
+		result = this.articleRepository.findAllPublished();
+
+		return result;
+	}
+
 	public Collection<Article> findAllPublishedByUser(final int userId) {
 		Collection<Article> result;
 

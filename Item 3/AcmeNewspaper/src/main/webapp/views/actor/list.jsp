@@ -22,7 +22,7 @@
 
 <!--  Listing grid -->
 
-<display:table pagesize="5" class="displaytag" keepStatus="true" name="actors" requestURI="${actorType}/list.do" id="row">
+<display:table pagesize="5" class="displaytag" name="actors" requestURI="${actorType}/list.do" id="row">
 
 <!-- Attributes -->
 
