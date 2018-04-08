@@ -47,6 +47,13 @@ public class ArticleService {
 		return result;
 	}
 
+	public Collection<Article> findAllPublishedByUser(final int userId) {
+		Collection<Article> result;
+
+		result = this.articleRepository.findAllPublishedByUser(userId);
+
+		return result;
+	}
 	public void delete(final Article article) {
 		Actor principal;
 

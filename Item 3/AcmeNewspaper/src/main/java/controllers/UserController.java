@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ArticleService;
 import services.UserService;
+import domain.Article;
 import domain.User;
 
 @Controller
@@ -29,7 +31,10 @@ public class UserController extends AbstractController {
 	// Services ---------------------------------------------------------------
 
 	@Autowired
-	private UserService	userService;
+	private UserService		userService;
+
+	@Autowired
+	private ArticleService	articleService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -56,12 +61,14 @@ public class UserController extends AbstractController {
 	public ModelAndView display(@RequestParam final int userId) throws Exception {
 		final ModelAndView result;
 		User user;
+		Collection<Article> articles;
 
 		user = this.userService.findOne(userId);
 
+		articles = this.articleService.findAllPublishedByUser(userId);
 		result = new ModelAndView("actor/display");
 		result.addObject("user", user);
-		result.addObject("articles", user.getArticles());
+		result.addObject("articles", articles);
 		result.addObject("requestURI", "user/display.do?userId=" + userId);
 		return result;
 	}
