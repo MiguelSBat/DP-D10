@@ -43,7 +43,7 @@ public class ArticleController extends AbstractController {
 		Collection<Article> articles;
 
 		if (keyword == null)
-			articles = this.articleService.findAll();
+			articles = this.articleService.findAllPublished();
 		else
 			articles = this.articleService.findByKeyword(keyword);
 		result = new ModelAndView("article/list");

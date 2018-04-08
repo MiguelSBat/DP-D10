@@ -38,7 +38,6 @@ public class Newspaper extends DomainEntity {
 		return this.description;
 	}
 
-	@NotNull
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	public Date getPublicationDate() {
@@ -87,6 +86,14 @@ public class Newspaper extends DomainEntity {
 
 	public void setArticles(final Collection<Article> articles) {
 		this.articles = articles;
+	}
+
+	public void addArticle(final Article article) {
+		this.articles.add(article);
+	}
+
+	public void removeArticle(final Article article) {
+		this.articles.remove(article);
 	}
 
 }
