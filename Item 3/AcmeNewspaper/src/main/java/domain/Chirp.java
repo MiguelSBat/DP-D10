@@ -8,6 +8,7 @@ import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -19,6 +20,7 @@ public class Chirp extends DomainEntity {
 	private String	title;
 	private Date	moment;
 	private String	description;
+	private boolean	containsTaboo;
 
 
 	@NotBlank
@@ -35,6 +37,15 @@ public class Chirp extends DomainEntity {
 	@NotBlank
 	public String getDescription() {
 		return this.description;
+	}
+
+	@NotNull
+	public boolean isContainsTaboo() {
+		return this.containsTaboo;
+	}
+
+	public void setContainsTaboo(final boolean containsTaboo) {
+		this.containsTaboo = containsTaboo;
 	}
 
 	public void setTitle(final String title) {
