@@ -68,6 +68,14 @@
 					<img src="${image}" height="150" width="250" />
 					</jstl:forEach>
 			</jstl:forEach>
+				<jstl:if test="${newspaper.publicationDate==null}">
+					<br />
+					<br />
+					<security:authorize access="hasRole('USER')">
+						<a href="user/article/create.do?newspaperId=${newspaper.id}" ><spring:message code="article.create"/></a>
+					</security:authorize>
+				</jstl:if>
+			</li>
 	</ul>
 
 </div>
