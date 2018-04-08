@@ -37,7 +37,7 @@
 	
 	
 	<jstl:forEach items="${article.pictures}" var="current">
-		<a href="${current}"><jstl:out value="${current}"/></a>
+		<img style="max-width: 20vw;" src="${current}" alt="${current}" />
 		<br />
 	</jstl:forEach>
 	<br />

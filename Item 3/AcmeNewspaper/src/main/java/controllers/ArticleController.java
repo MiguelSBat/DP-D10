@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import services.ArticleService;
 import services.UserService;
 import domain.Article;
+import domain.User;
 
 @Controller
 @RequestMapping("/article")
@@ -41,9 +42,10 @@ public class ArticleController extends AbstractController {
 		ModelAndView result;
 		Collection<Article> articles;
 
-		articles = this.articleService.findByKeyword(keyword);
 		if (keyword == null)
 			articles = this.articleService.findAll();
+		else
+			articles = this.articleService.findByKeyword(keyword);
 		result = new ModelAndView("article/list");
 		result.addObject("articles", articles);
 		result.addObject("requestURI", "article/list.do");
@@ -56,12 +58,14 @@ public class ArticleController extends AbstractController {
 	@RequestMapping(value = "display", method = RequestMethod.GET)
 	public ModelAndView display(@RequestParam final int articleId) {
 		final ModelAndView result;
-		final Article article;
+		Article article;
+		User user;
 
 		article = this.articleService.findOne(articleId);
-
+		user = this.userService.UserByArticle(articleId);
 		result = new ModelAndView("article/display");
 		result.addObject("article", article);
+		result.addObject("user", user);
 
 		return result;
 	}
