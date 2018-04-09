@@ -104,3 +104,30 @@
 </display:column>
 
 </display:table>
+
+<br/>
+<br/>
+<b><spring:message code ="actor.chirps"/></b>
+<br/>
+<!-- Listing grid -->
+
+<display:table pagesize="5" class="displaytag" name="chirps"  requestURI="${requestURI}" id="row4">
+
+	<spring:message code="chirp.title" var="titleHeader" />
+	<display:column title="${titleHeader}"><jstl:out value="${row4.title}"></jstl:out></display:column>
+	
+	<spring:message code="chirp.description" var="descriptionHeader" />
+	<display:column title="${descriptionHeader}"><jstl:out value="${row4.description}"></jstl:out></display:column>
+	
+	<spring:message code="chirp.moment" var="momentHeader" />
+	<display:column title="${momentHeader}"><jstl:out value="${row4.moment}"></jstl:out></display:column>
+	
+	<security:authorize access="hasRole('ADMIN')">
+	<display:column>
+	<a href="administrator/chirp/delete.do?chirpId=${row4.id }"><spring:message code="chirp.delete" /></a>
+	</display:column>
+	</security:authorize>
+	
+
+</display:table>
+

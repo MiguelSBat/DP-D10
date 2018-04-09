@@ -75,7 +75,7 @@ public class ChirpUserController extends AbstractController {
 			try {
 				this.chirpService.save(chirp);
 				principal = this.actorService.findByPrincipal();
-				result = new ModelAndView("redirect:/chirp/list.do?userId=" + principal.getId());
+				result = new ModelAndView("redirect:/user/display.do?userId=" + principal.getId());
 			} catch (final Throwable oops) {
 				String errorMessage = "category.commit.error";
 

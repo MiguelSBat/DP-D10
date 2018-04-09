@@ -21,9 +21,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
 import services.ArticleService;
+import services.ChirpService;
 import services.UserService;
 import domain.Actor;
 import domain.Article;
+import domain.Chirp;
 import domain.User;
 
 @Controller
@@ -40,6 +42,9 @@ public class UserController extends AbstractController {
 
 	@Autowired
 	private ActorService	actorService;
+
+	@Autowired
+	private ChirpService	chirpService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -70,7 +75,9 @@ public class UserController extends AbstractController {
 		Collection<User> following, followers;
 		Actor actor;
 		Integer id;
+		Collection<Chirp> chirps;
 
+		chirps = this.chirpService.findByUserId(userId);
 		user = this.userService.findOne(userId);
 
 		articles = this.articleService.findAllPublishedByUser(userId);
@@ -87,6 +94,7 @@ public class UserController extends AbstractController {
 		result.addObject("articles", articles);
 		result.addObject("following", following);
 		result.addObject("followers", followers);
+		result.addObject("chirps", chirps);
 		result.addObject("requestURI", "user/display.do?userId=" + userId);
 		return result;
 	}

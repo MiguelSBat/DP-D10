@@ -74,6 +74,7 @@
 					</security:authorize>		
 					<security:authorize access="hasRole('USER')">
 					<li><a href="user/chirp/list.do"><spring:message code="master.page.user.chirps.followed" /></a></li>
+					<li><a href="user/chirp/create.do"><spring:message code="chirp.create" /></a></li>
 					</security:authorize>			
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
