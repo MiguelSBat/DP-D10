@@ -32,9 +32,9 @@ public class FollowUp extends DomainEntity {
 	public String getTitle() {
 		return this.title;
 	}
-	@NotNull
+
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	public Date getPublishMoment() {
 		return this.publishMoment;
 	}

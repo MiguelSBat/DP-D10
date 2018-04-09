@@ -82,4 +82,13 @@ public class User extends Actor {
 
 	}
 
+	public void addFollowUp(final FollowUp followUp) {
+		this.followUp.add(followUp);
+
+	}
+	public void removeFollowUp(final FollowUp followUp) {
+		this.followUp.remove(followUp);
+
+	}
+
 }
