@@ -1,18 +1,16 @@
 
 package controllers.user;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
 import services.UserService;
 import controllers.AbstractController;
-import domain.Actor;
 import domain.User;
 
 @Controller
@@ -34,37 +32,33 @@ public class UserUserController extends AbstractController {
 		super();
 	}
 
-	// Listing ----------------------------------------------------------------
+	// Deleting ----------------------------------------------------------------	
 
-	@RequestMapping(value = "/followers", method = RequestMethod.GET)
-	public ModelAndView list() {
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public ModelAndView unfollow(@RequestParam final int userId) {
 		ModelAndView result;
-		Collection<User> followers;
-		Actor principal;
 		User user;
 
-		principal = this.actorService.findByPrincipal();
-		user = (User) principal;
-		followers = this.userService.findFollowingMe(user.getId());
-		result = new ModelAndView("user/followers");
-		result.addObject("users", followers);
-		result.addObject("requestURI", "user/user/list.do");
+		this.userService.unfollow(userId);
+
+		user = (User) this.actorService.findByPrincipal();
+		result = new ModelAndView("redirect:/user/display.do?userId=" + user.getId());
+
 		return result;
 	}
 
-	@RequestMapping(value = "/following", method = RequestMethod.GET)
-	public ModelAndView list2() {
+	// Adding ----------------------------------------------------------------
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	public ModelAndView follow(@RequestParam final int userId) {
 		ModelAndView result;
-		Collection<User> following;
-		Actor principal;
 		User user;
 
-		principal = this.actorService.findByPrincipal();
-		user = (User) principal;
-		following = user.getUsers();
-		result = new ModelAndView("user/following");
-		result.addObject("users", following);
-		result.addObject("requestURI", "user/user/list.do");
+		user = (User) this.actorService.findByPrincipal();
+
+		this.userService.follow(userId);
+
+		result = new ModelAndView("redirect:/user/display.do?userId=" + user.getId());
+
 		return result;
 	}
 }

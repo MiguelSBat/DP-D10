@@ -26,9 +26,15 @@
 <jstl:out value="${user.postalAddress}" />
 <br />
 
+<security:authorize access="hasRole('USER')">
+<a	href="user/user/add.do?userId=${user.id}">
+	<spring:message code="actor.follow"></spring:message>
+</a>
+</security:authorize>
+
 <!--  Listing grid -->
 
-<display:table pagesize="5" class="displaytag" keepStatus="true" name="articles" requestURI="${requestURI}" id="row">
+<display:table pagesize="5" class="displaytag" name="articles" requestURI="${requestURI}" id="row">
 
 <!-- Attributes -->
 
@@ -43,5 +49,54 @@
 <%-- <spring:message code="article.datePattern" var="datePattern"/> --%>
 <spring:message code="article.publishMoment" var="moment"/>
 <display:column property="publishMoment" title="${moment}" sortable="false" format="${datePattern}"/>
+
+</display:table>
+
+<b><spring:message code ="actor.following"/></b>
+<br/>
+
+
+<!--  Listing grid -->
+
+<display:table pagesize="5" class="displaytag" keepStatus="false" name="following" requestURI="${requestURI}" id="row2">
+
+<spring:message code="actor.name" var="name"/>
+<display:column title="${name}" sortable="true">
+<jstl:out value="${row2.name}" />
+</display:column>
+		
+<spring:message code="actor.surname" var="surname"/>
+<display:column title="${surname}" sortable="false">
+<jstl:out value="${row2.surname}" />
+</display:column>
+
+<security:authorize access="hasRole('USER')">
+<display:column>
+	<a	href="user/user/delete.do?userId=${row2.id}">
+		<spring:message code="actor.unfollow"></spring:message>
+	</a>
+</display:column>
+</security:authorize>
+
+</display:table>
+
+<br/>
+<br/>
+<b><spring:message code ="actor.followers"/></b>
+<br/>
+
+<!--  Listing grid -->
+
+<display:table pagesize="5" class="displaytag" keepStatus="false" name="followers" requestURI="${requestURI}" id="row3">
+
+<spring:message code="actor.name" var="name"/>
+<display:column title="${name}" sortable="true">
+<jstl:out value="${row3.name}" />
+</display:column>
+
+<spring:message code="actor.surname" var="surname"/>
+<display:column title="${surname}" sortable="false">
+<jstl:out value="${row3.surname}" />
+</display:column>
 
 </display:table>

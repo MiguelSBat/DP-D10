@@ -81,21 +81,29 @@ public class UserService {
 
 	public void follow(final int userId) {
 		Actor actor;
-		User user;
+		User user, objective;
+
 		actor = this.actorService.findByPrincipal();
 		Assert.notNull(actor);
+
 		user = (User) actor;
-		user.getUsers().add(this.findOne(userId));
+		objective = this.findOne(userId);
+		if (!user.getUsers().contains(objective))
+			user.getUsers().add(objective);
 	}
 
 	public void unfollow(final int userId) {
 		Actor actor;
-		User user;
+		User user, objective;
+		Collection<User> following;
+
 		actor = this.actorService.findByPrincipal();
 		Assert.notNull(actor);
 		user = (User) actor;
-		final Collection<User> following = this.findFollowingMe(user.getId());
-		following.remove(this.findOne(userId));
+
+		following = user.getUsers();
+		objective = this.findOne(userId);
+		following.remove(objective);
 
 	}
 

@@ -62,13 +62,18 @@ public class UserController extends AbstractController {
 		final ModelAndView result;
 		User user;
 		Collection<Article> articles;
+		Collection<User> following, followers;
 
 		user = this.userService.findOne(userId);
 
 		articles = this.articleService.findAllPublishedByUser(userId);
+		following = user.getUsers();
+		followers = this.userService.findFollowingMe(userId);
 		result = new ModelAndView("actor/display");
 		result.addObject("user", user);
 		result.addObject("articles", articles);
+		result.addObject("following", following);
+		result.addObject("followers", followers);
 		result.addObject("requestURI", "user/display.do?userId=" + userId);
 		return result;
 	}
