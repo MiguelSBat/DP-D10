@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ActorService;
 import services.ArticleService;
 import services.UserService;
+import domain.Actor;
 import domain.Article;
 import domain.User;
 
@@ -35,6 +37,9 @@ public class UserController extends AbstractController {
 
 	@Autowired
 	private ArticleService	articleService;
+
+	@Autowired
+	private ActorService	actorService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -63,6 +68,8 @@ public class UserController extends AbstractController {
 		User user;
 		Collection<Article> articles;
 		Collection<User> following, followers;
+		Actor actor;
+		Integer id;
 
 		user = this.userService.findOne(userId);
 
@@ -70,6 +77,12 @@ public class UserController extends AbstractController {
 		following = user.getUsers();
 		followers = this.userService.findFollowingMe(userId);
 		result = new ModelAndView("actor/display");
+		if (this.actorService.isLogged()) {
+			actor = this.actorService.findByPrincipal();
+			id = actor.getId();
+			if (actor instanceof User)
+				result.addObject("userId", id);
+		}
 		result.addObject("user", user);
 		result.addObject("articles", articles);
 		result.addObject("following", following);

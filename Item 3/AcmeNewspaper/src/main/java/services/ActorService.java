@@ -6,6 +6,7 @@ import java.util.Collection;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -73,6 +74,16 @@ public class ActorService {
 		userAccount = LoginService.getPrincipal();
 		Assert.notNull(userAccount);
 		result = this.findByUserAccount(userAccount);
+		return result;
+	}
+
+	public boolean isLogged() {
+		boolean result = false;
+		Object principal;
+
+		principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (principal instanceof UserAccount)
+			result = true;
 		return result;
 	}
 

@@ -27,9 +27,11 @@
 <br />
 
 <security:authorize access="hasRole('USER')">
+<jstl:if test="${userId!=user.id}">
 <a	href="user/user/add.do?userId=${user.id}">
 	<spring:message code="actor.follow"></spring:message>
 </a>
+</jstl:if>
 </security:authorize>
 
 <!--  Listing grid -->
@@ -71,11 +73,13 @@
 </display:column>
 
 <security:authorize access="hasRole('USER')">
+<jstl:if test="${userId==user.id}">
 <display:column>
 	<a	href="user/user/delete.do?userId=${row2.id}">
 		<spring:message code="actor.unfollow"></spring:message>
 	</a>
 </display:column>
+</jstl:if>
 </security:authorize>
 
 </display:table>
