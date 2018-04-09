@@ -56,12 +56,19 @@ public class NewspaperService {
 	}
 
 	public void delete(final Newspaper newspaper) {
-		final Actor principal;
+		Actor principal;
+		User user;
+		Collection<Newspaper> newspapers;
 
 		principal = this.actorService.findByPrincipal();
 		Assert.isTrue(principal instanceof Administrator);
+		user = this.userService.findByNewspaperId(newspaper.getId());
+		newspapers = user.getNewspapers();
+		newspapers.remove(newspaper);
+		user.setNewspapers(newspapers);
+		this.userService.save(user);
 		for (final Article a : newspaper.getArticles())
-			this.articleService.delete(a);
+			this.articleService.deleteByNewspaper(a);
 		this.newspaperRepository.delete(newspaper);
 
 	}
