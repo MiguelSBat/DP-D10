@@ -34,12 +34,12 @@
 	
 	<acme:textbox code="newspaper.description" path="description"/>
 
-	<spring:message code="newspaper.publicationDate" var="publicationDate"/>
+<%-- 	<spring:message code="newspaper.publicationDate" var="publicationDate"/>
 	<form:label path="publicationDate">${publicationDate}</form:label>
 	<form:input path="publicationDate" placeholder="dd/mm/yyyy"/>
 	<form:errors cssClass="error" path="publicationDate"/>
 	<br />
-	
+	 --%>
 	
 	<acme:textbox code="newspaper.picture" path="picture"/>
 	

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ActorService;
 import services.ArticleService;
 import services.NewspaperService;
 import services.UserService;
@@ -31,9 +32,11 @@ public class NewspaperController extends AbstractController {
 	@Autowired
 	private NewspaperService	newspaperService;
 	@Autowired
-	private ArticleService	articleService;
+	private ArticleService		articleService;
 	@Autowired
 	private UserService			userService;
+	@Autowired
+	private ActorService		actorService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -74,7 +77,28 @@ public class NewspaperController extends AbstractController {
 //		result.addObject("articles", articleWithoutNewspaper);
 		return result;
 	}
-
+	//Publish
+	
+	@RequestMapping(value = "/publish", method = RequestMethod.GET)
+	public ModelAndView publish(@RequestParam final int newspaperId) {
+		ModelAndView result;
+		try{
+			Newspaper newspapernuevo =this.newspaperService.publish(newspaperId);
+			result = display(newspapernuevo.getId());
+		
+		
+		} catch (final Throwable oops) {
+			result = display(newspaperId);
+			boolean error =true;
+			result.addObject("Error",error);
+		
+	}return result;}
+	
+	
+	
+	
+	
+	
 	// Listing ----------------------------------------------------------------
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -96,9 +120,19 @@ public class NewspaperController extends AbstractController {
 	@RequestMapping(value = "display", method = RequestMethod.GET)
 	public ModelAndView display(@RequestParam final int newspaperId) {
 		final ModelAndView result;
+		result = new ModelAndView("newspaper/display");
 		final Newspaper newspaper;
-		User u;
 		newspaper = this.newspaperService.findOne(newspaperId);
+		result.addObject("newspaper", newspaper);
+		
+		User u;
+		if(this.actorService.isLogged()){
+		final User actual = (User) this.actorService.findByPrincipal();
+		Boolean EsAutor =actual.getNewspapers().contains(newspaper);
+		Boolean NoEstaPublicado=newspaper.getPublicationDate()==null;
+		Boolean Mostrar=NoEstaPublicado&&EsAutor;
+		result.addObject("EsAutor",Mostrar);
+		}
 		final Collection<Article> articles = newspaper.getArticles();
 		final TreeMap<Integer, User> mapaMegaComplejo = new TreeMap<>();
 		
@@ -107,9 +141,10 @@ public class NewspaperController extends AbstractController {
 		
 			mapaMegaComplejo.put(a.getId(), u);
 		}
-		result = new ModelAndView("newspaper/display");
-		result.addObject("newspaper", newspaper);
+		
+	
 		result.addObject("mapaMegaComplejo", mapaMegaComplejo);
+		
 
 		return result;
 	}

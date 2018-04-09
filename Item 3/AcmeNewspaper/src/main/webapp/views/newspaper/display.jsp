@@ -81,8 +81,13 @@
 </div>
 
 
+<jstl:if test="${EsAutor}">
+					<a href="newspaper/publish.do?newspaperId=${newspaper.id}" ><spring:message code="newspaper.publish"/></a>
 
-
+</jstl:if>
+<jstl:if test="${Error}">
+	<spring:message code="newspaper.error"/>
+</jstl:if>
 <input type="button" name="cancel"
 	value="<spring:message code="newspaper.cancel" />"
 	onclick="javascript: relativeRedir('')" />
