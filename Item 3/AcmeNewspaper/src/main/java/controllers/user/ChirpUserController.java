@@ -47,6 +47,7 @@ public class ChirpUserController extends AbstractController {
 		chirps = this.chirpService.findByFollowed(principal.getId());
 		result = new ModelAndView("chirp/list");
 		result.addObject("chirps", chirps);
+		result.addObject("requestURI", "user/chirp/list.do");
 
 		return result;
 	}

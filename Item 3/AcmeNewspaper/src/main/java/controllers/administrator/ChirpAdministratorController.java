@@ -41,6 +41,7 @@ public class ChirpAdministratorController extends AbstractController {
 		chirps = this.chirpService.findByTabooWords();
 		result = new ModelAndView("chirp/list");
 		result.addObject("chirps", chirps);
+		result.addObject("requestURI", "administrator/chirp/list.do");
 
 		return result;
 	}

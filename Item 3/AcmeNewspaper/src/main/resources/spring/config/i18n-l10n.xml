@@ -32,6 +32,7 @@
 		<value>/views/chirp/messages</value>
 		<value>/views/article/messages</value>
 		<value>/views/followup/messages</value>
+		<value>/views/config/messages</value>
 	</util:list>
 
 </beans>
