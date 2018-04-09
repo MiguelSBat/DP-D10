@@ -61,6 +61,11 @@
 	</display:column>
 
 </security:authorize>
+<security:authorize access="hasRole('ADMIN')">
+	<display:column>
+	<a href="administrator/article/delete.do?articleId=${row.id }"><spring:message code="chirp.delete" /></a>
+	</display:column>
+	</security:authorize>
 
 </display:table>
 

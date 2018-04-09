@@ -50,5 +50,17 @@ public class ArticleAdministratorController extends AbstractController {
 
 		return result;
 	}
+	// Delete ---------------------------------------------------------------
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public ModelAndView delete(final int articleId) {
+		ModelAndView result;
+		Article article;
+
+		article = this.articleService.findOne(articleId);
+		this.articleService.delete(article);
+		result = new ModelAndView("redirect:/administrator/article/list.do");
+
+		return result;
+	}
 
 }
