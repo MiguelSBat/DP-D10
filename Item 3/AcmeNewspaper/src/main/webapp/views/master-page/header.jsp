@@ -70,6 +70,7 @@
 					<li class="arrow"></li>
 					<security:authorize access="hasRole('ADMIN')">
 					<li><a href="administrator/chirp/list.do"><spring:message code="master.page.administrator.chirps" /></a></li>
+					<li><a href="administrator/article/list.do"><spring:message code="master.page.administrator.articles" /></a></li>
 					</security:authorize>		
 					<security:authorize access="hasRole('USER')">
 					<li><a href="user/chirp/list.do"><spring:message code="master.page.user.chirps.followed" /></a></li>

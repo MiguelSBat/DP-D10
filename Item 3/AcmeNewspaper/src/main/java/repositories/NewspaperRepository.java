@@ -17,4 +17,5 @@ public interface NewspaperRepository extends JpaRepository<Newspaper, Integer> {
 
 	@Query("select n from Newspaper n join n.articles a where a.id=?1")
 	Newspaper findByArticleId(int id);
+
 }

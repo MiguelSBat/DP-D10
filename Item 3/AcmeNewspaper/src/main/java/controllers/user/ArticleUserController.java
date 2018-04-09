@@ -15,9 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
 import services.ArticleService;
+import services.NewspaperService;
 import controllers.AbstractController;
 import domain.Actor;
 import domain.Article;
+import domain.Newspaper;
 
 @Controller
 @RequestMapping("/user/article")
@@ -25,10 +27,13 @@ public class ArticleUserController extends AbstractController {
 
 	//Service -----------------------------------------------------------------
 	@Autowired
-	private ArticleService	articleService;
+	private ArticleService		articleService;
 
 	@Autowired
-	private ActorService	actorService;
+	private ActorService		actorService;
+
+	@Autowired
+	private NewspaperService	newspaperService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -44,15 +49,20 @@ public class ArticleUserController extends AbstractController {
 		ModelAndView result;
 		Collection<Article> articles;
 		Actor actor;
+		Integer userId;
 
+		userId = null;
 		actor = this.actorService.findByPrincipal();
-		if (keyword == null)
+		if (keyword == null) {
 			articles = this.articleService.findByUser(actor.getId());
-		else
+			userId = actor.getId();
+		} else
 			articles = this.articleService.findByKeyword(keyword);
 		result = new ModelAndView("article/list");
 		result.addObject("articles", articles);
 		result.addObject("requestURI", "user/article/list.do");
+		if (userId != null)
+			result.addObject("userId", userId);
 
 		return result;
 	}
@@ -73,14 +83,16 @@ public class ArticleUserController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView create(@RequestParam final int newspaperId, @RequestParam final int articleId) {
+	public ModelAndView edit(@RequestParam final int articleId) {
 		ModelAndView result;
 		Article article;
+		Newspaper newspaper;
 
+		newspaper = this.newspaperService.findByArticleId(articleId);
 		article = this.articleService.findOne(articleId);
 		result = this.createEditModelAndView(article);
-		result.addObject("newspaperId", newspaperId);
-		result.addObject("requestURI", "user/article/edit.do?newspaperId=" + newspaperId);
+		result.addObject("newspaperId", newspaper.getId());
+		result.addObject("requestURI", "user/article/edit.do?articleId=" + articleId);
 
 		return result;
 	}

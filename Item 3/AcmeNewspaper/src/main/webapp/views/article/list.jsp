@@ -51,5 +51,16 @@
 <spring:message code="article.publishMoment" var="moment"/>
 <display:column property="publishMoment" title="${moment}" sortable="false" format="{0,date,${datePattern}}"/>
 
+<security:authorize access="hasRole('USER')">
+	
+	<spring:message code="article.title" var="title"/>
+	<display:column sortable="false">
+		<jstl:if test="${userId!=null && row.draftMode==true && row.publishMoment==null}">
+		<a href="user/article/edit.do?&articleId=${row.id}"><spring:message code="article.edit"/></a>
+		</jstl:if>		
+	</display:column>
+
+</security:authorize>
+
 </display:table>
 

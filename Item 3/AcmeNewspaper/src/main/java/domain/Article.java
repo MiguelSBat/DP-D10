@@ -25,6 +25,7 @@ public class Article extends DomainEntity {
 	private Date				publishMoment;
 	private Collection<String>	pictures;
 	private boolean				draftMode;
+	private boolean				taboo;
 
 
 	@NotBlank
@@ -81,6 +82,14 @@ public class Article extends DomainEntity {
 
 	public void setDraftMode(final boolean draftMode) {
 		this.draftMode = draftMode;
+	}
+
+	public boolean isTaboo() {
+		return this.taboo;
+	}
+
+	public void setTaboo(final boolean taboo) {
+		this.taboo = taboo;
 	}
 
 	//Relationships

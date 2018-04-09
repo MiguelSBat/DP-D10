@@ -33,6 +33,9 @@ public class ArticleService {
 	private NewspaperService	newspaperService;
 
 	@Autowired
+	private ConfigService		configService;
+
+	@Autowired
 	private UserService			userService;
 
 	@Autowired
@@ -139,6 +142,8 @@ public class ArticleService {
 			Assert.isTrue(newspaper.getPublicity().equals(true), "article.error.notPublic");
 		}
 
+		if (this.configService.isTaboo(article.getTitle()) || this.configService.isTaboo(article.getSummary()) || this.configService.isTaboo(article.getText()))
+			article.setTaboo(true);
 		if (article.getId() == 0) {
 			old = new ArrayList<Article>(newspaper.getArticles());
 			newspaper.addArticle(article);
@@ -198,6 +203,14 @@ public class ArticleService {
 		Collection<Article> result;
 
 		result = this.articleRepository.findByUser(userId);
+
+		return result;
+	}
+
+	public Collection<Article> findTaboo() {
+		Collection<Article> result;
+
+		result = this.articleRepository.findTaboo();
 
 		return result;
 	}
