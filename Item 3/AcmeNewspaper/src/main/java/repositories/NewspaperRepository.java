@@ -14,4 +14,7 @@ public interface NewspaperRepository extends JpaRepository<Newspaper, Integer> {
 
 	@Query("select n from Newspaper n where n.title like CONCAT('%',?1,'%') or n.description like CONCAT('%',?1,'%')")
 	Collection<Newspaper> findByCriteria(String criteria);
+
+	@Query("select n from Newspaper n join n.articles a where a.id=?1")
+	Newspaper findByArticleId(int id);
 }

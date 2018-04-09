@@ -98,4 +98,11 @@ public class NewspaperService {
 		newspapers = this.newspaperRepository.findByCriteria(criteria);
 		return newspapers;
 	}
+	public Newspaper findByArticleId(final int id) {
+		Newspaper result;
+
+		result = this.newspaperRepository.findByArticleId(id);
+
+		return result;
+	}
 }

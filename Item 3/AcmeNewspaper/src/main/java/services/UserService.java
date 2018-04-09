@@ -124,4 +124,18 @@ public class UserService {
 
 		return result;
 	}
+	public User findByArticleId(final int articleId) {
+		User result;
+
+		result = this.userRepository.findByArticleId(articleId);
+
+		return result;
+	}
+	public User findByNewspaperId(final int newspaperId) {
+		User result;
+
+		result = this.userRepository.findByNewspaperId(newspaperId);
+
+		return result;
+	}
 }

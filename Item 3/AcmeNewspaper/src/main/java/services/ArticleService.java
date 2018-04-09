@@ -14,6 +14,7 @@ import repositories.ArticleRepository;
 import domain.Actor;
 import domain.Administrator;
 import domain.Article;
+import domain.FollowUp;
 import domain.Newspaper;
 import domain.User;
 
@@ -30,6 +31,12 @@ public class ArticleService {
 
 	@Autowired
 	private NewspaperService	newspaperService;
+
+	@Autowired
+	private UserService			userService;
+
+	@Autowired
+	private FollowUpService		followUpService;
 
 
 	//Constructors
@@ -55,9 +62,37 @@ public class ArticleService {
 
 	public void delete(final Article article) {
 		Actor principal;
+		Collection<Article> articles;
+		Collection<FollowUp> followUps;
+		Collection<FollowUp> userFollowUps;
+		User user;
+		Newspaper newspaper;
 
 		principal = this.actorService.findByPrincipal();
 		Assert.isTrue(principal instanceof Administrator);
+
+		followUps = this.followUpService.findByArticleId(article.getId());
+		//Borrando articulo del usuario
+		user = this.userService.findByArticleId(article.getId());
+		articles = user.getArticles();
+		articles.remove(article);
+		user.setArticles(articles);
+		//Borrando followsUps de user
+		userFollowUps = user.getFollowUp();
+		userFollowUps.removeAll(followUps);
+		this.userService.save(user);
+		//Borrando FollowUps
+		for (final FollowUp f : followUps)
+			this.followUpService.delete(f);
+
+		//Borrando articulo de su Newspaper
+		newspaper = this.newspaperService.findByArticleId(article.getId());
+		articles = newspaper.getArticles();
+		articles.remove(article);
+		newspaper.setArticles(articles);
+		this.newspaperService.save(newspaper);
+
+		//Borrando artículo
 		this.articleRepository.delete(article);
 
 	}

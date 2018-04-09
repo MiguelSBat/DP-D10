@@ -64,6 +64,14 @@ public class FollowUpService {
 		return result;
 	}
 
+	public Collection<FollowUp> findByArticleId(final int articleId) {
+		Collection<FollowUp> result;
+
+		result = this.followUpRepository.findByArticleId(articleId);
+
+		return result;
+	}
+
 	public void flush() {
 		this.followUpRepository.flush();
 	}
