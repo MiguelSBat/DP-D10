@@ -113,6 +113,7 @@
 				<ref bean="newspaper4"/>
 				<ref bean="newspaper5"/>
 				<ref bean="newspaper6"/>
+				<ref bean="newspaper7"/>
 			</list>	
 		</property>
 		<property name="articles">
@@ -122,6 +123,7 @@
 						<ref bean="article3"/>
 							<ref bean="article4"/>
 								<ref bean="article5"/>
+								<ref bean="article16"/>
 			</list>	
 		</property>
 		<property name="followUp">
@@ -405,7 +407,18 @@
 		</property>
 		<property name="draftMode" value="false" />
 	</bean>
-	
+	<bean id="article16" class="domain.Article">
+		<property name="title" value="articulo16" />
+		<property name="summary" value="Sumary" />
+		<property name="text" value="texto : Lorem ipsum dolormodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+		<property name="publishMoment" value="01/02/2019" />
+		<property name="pictures">
+			<list>
+			<value>http://imagen.png</value>
+			</list>	
+		</property>
+		<property name="draftMode" value="false" />
+	</bean>
 	<bean id="chirp1" class="domain.Chirp">
 		<property name="title" value="chirp1" />
 		<property name="moment" value="01/02/2014" />
@@ -715,6 +728,18 @@
 	<property name="picture" value="https://vignette.wikia.nocookie.net/medabots/images/7/73/Imagen_de_ejemplo.png" />
 		<property name="articles">
 			<list>
+			</list>	
+		</property>
+	</bean>
+	<bean id="newspaper7" class="domain.Newspaper">
+	<property name="title" value="Periodico en draft publico" />
+	<property name="description" value="descripcion del periodico" />
+	<property name="taboo" value="false" />
+	<property name="publicity" value="false" />
+	<property name="picture" value="https://vignette.wikia.nocookie.net/medabots/images/7/73/Imagen_de_ejemplo.png" />
+		<property name="articles">
+			<list>
+				<ref bean="article16"/>
 			</list>	
 		</property>
 	</bean>
