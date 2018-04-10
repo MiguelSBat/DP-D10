@@ -11,6 +11,8 @@ import org.springframework.util.Assert;
 
 import repositories.CreditCardRepository;
 import domain.CreditCard;
+import domain.Customer;
+import domain.Newspaper;
 
 @Service
 @Transactional
@@ -19,6 +21,15 @@ public class CreditCardService {
 	//Managed Repository ----
 	@Autowired
 	private CreditCardRepository	creditCardRepository;
+
+	@Autowired
+	private CustomerService			customerService;
+
+	@Autowired
+	private ActorService			actorService;
+
+	@Autowired
+	private NewspaperService		newspaperService;
 
 
 	//Constructors
@@ -50,8 +61,16 @@ public class CreditCardService {
 
 	public CreditCard save(final CreditCard creditCard) {
 		CreditCard result;
-
+		Collection<CreditCard> aux;
+		Customer customer;
+		customer = (Customer) this.actorService.findByPrincipal();
 		result = this.creditCardRepository.save(creditCard);
+
+		//añado la creditcard al customer
+		aux = customer.getCreditCard();
+		aux.add(result);
+		customer.setCreditCard(aux);
+		this.customerService.save(customer);
 		return result;
 	}
 
@@ -66,6 +85,21 @@ public class CreditCardService {
 
 	public void flush() {
 		this.creditCardRepository.flush();
+	}
+
+	public Collection<CreditCard> findByCustomer(final int customerid) {
+		return this.creditCardRepository.findByCustomer(customerid);
+	}
+
+	public void subscribe(final Newspaper newspaper, final CreditCard creditcard) {
+		Customer customer;
+		customer = (Customer) this.actorService.findByPrincipal();
+		Assert.isTrue(customer.getCreditCard().contains(creditcard));
+
+		final Collection<Newspaper> aux = creditcard.getNewspapers();
+		aux.add(newspaper);
+		creditcard.setNewspapers(aux);
+
 	}
 
 }

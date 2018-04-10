@@ -487,9 +487,16 @@
 		<property name="emailAddress" value="ponsavi@acme.org" />
 		<property name="phoneNumber" value="+34 (545) 6565" />
 		<property name="postalAddress" value="Calle Fontenla, 2" />
-		<property name="creditCard" ref="creditcard1"/>
+		<property name="creditCard">
+			<list>
+				<ref bean="creditcard1"/>
+			</list>	
+		</property>
 		<property name="userAccount" ref="userAccount3" />
 	</bean>
+
+	
+
 	
 	<bean id="followUp1" class="domain.FollowUp">
 		<property name="title" value="titulodelfollowup1" />
