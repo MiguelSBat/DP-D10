@@ -84,7 +84,7 @@
 		<property name="name" value="Paco" />
 		<property name="surname" value="Samper Villagrán" />
 		<property name="emailAddress" value="ponsavi@acme.org" />
-		<property name="phoneNumber" value="+34 (545) 6565" />
+		<property name="phoneNumber" value="656343000" />
 		<property name="postalAddress" value="Calle Fontenla, 2" />
 	
 	</bean>
@@ -93,7 +93,7 @@
 		<property name="name" value="Pepón" />
 		<property name="surname" value="Samper Villagrán" />
 		<property name="emailAddress" value="ponsavi@acme.org" />
-		<property name="phoneNumber" value="+34 (545) 6565" />
+		<property name="phoneNumber" value="656343002" />
 		<property name="postalAddress" value="Calle Fontenla, 2" />
 		<property name="users">
 			<list>
@@ -140,7 +140,7 @@
 		<property name="name" value="userName2" />
 		<property name="surname" value="userSurname2" />
 		<property name="emailAddress" value="user2@mail.com" />
-		<property name="phoneNumber" value="user2PhoneNumber" />
+		<property name="phoneNumber" value="656222111" />
 		<property name="postalAddress" value="user2PostalAdress" />
 		<property name="users">
 			<list>
@@ -179,7 +179,7 @@
 		<property name="name" value="userName3" />
 		<property name="surname" value="userSurname3" />
 		<property name="emailAddress" value="user3@mail.com" />
-		<property name="phoneNumber" value="user3PhoneNumber" />
+		<property name="phoneNumber" value="656222113" />
 		<property name="postalAddress" value="user3PostalAdress" />
 		<property name="users">
 			<list>
@@ -485,7 +485,7 @@
 		<property name="name" value="Pepón" />
 		<property name="surname" value="Samper Villagrán" />
 		<property name="emailAddress" value="ponsavi@acme.org" />
-		<property name="phoneNumber" value="+34 (545) 6565" />
+		<property name="phoneNumber" value="656222111" />
 		<property name="postalAddress" value="Calle Fontenla, 2" />
 		<property name="creditCard">
 			<list>
@@ -634,6 +634,7 @@
 	<property name="description" value="descripcion del periodico" />
 	<property name="publicationDate" value="01/02/2014" />
 	<property name="publicity" value="false" />
+	<property name="taboo" value="false" />
 	<property name="picture" value="https://vignette.wikia.nocookie.net/medabots/images/7/73/Imagen_de_ejemplo.png" />
 		<property name="articles">
 			<list>
@@ -651,6 +652,7 @@
 	<property name="description" value="descripcion del periodico" />
 	<property name="publicationDate" value="01/02/2014" />
 	<property name="publicity" value="false" />
+	<property name="taboo" value="false" />
 	<property name="picture" value="https://vignette.wikia.nocookie.net/medabots/images/7/73/Imagen_de_ejemplo.png" />
 		<property name="articles">
 			<list>
@@ -667,6 +669,7 @@
 	<property name="description" value="descripcion del periodico" />
 	<property name="publicationDate" value="01/02/2014" />
 	<property name="publicity" value="true" />
+	<property name="taboo" value="false" />
 	<property name="picture" value="https://vignette.wikia.nocookie.net/medabots/images/7/73/Imagen_de_ejemplo.png" />
 		<property name="articles">
 			<list>
@@ -681,6 +684,7 @@
 	<bean id="newspaper4" class="domain.Newspaper">
 	<property name="title" value="Periodico en draft publico" />
 	<property name="description" value="descripcion del periodico" />
+	<property name="taboo" value="false" />
 	<property name="publicationDate" value="01/02/2014" />
 	<property name="publicity" value="false" />
 	<property name="picture" value="https://vignette.wikia.nocookie.net/medabots/images/7/73/Imagen_de_ejemplo.png" />
@@ -694,6 +698,7 @@
 	<property name="title" value="Periodico en draft privado" />
 	<property name="description" value="descripcion del periodico" />
 	<property name="publicationDate" value="01/02/2014" />
+	<property name="taboo" value="false" />
 	<property name="publicity" value="true" />
 	<property name="picture" value="https://vignette.wikia.nocookie.net/medabots/images/7/73/Imagen_de_ejemplo.png" />
 		<property name="articles">
@@ -703,9 +708,10 @@
 		</property>
 	</bean>
 	<bean id="newspaper6" class="domain.Newspaper">
-	<property name="title" value="titulo del periodico" />
-	<property name="description" value="descripcion del periodico" />
+	<property name="title" value="periodico prohibido taboo +18" />
+	<property name="description" value="sexo free sex sida dildo dialis aprobado dp" />
 	<property name="publicity" value="false" />
+	<property name="taboo" value="true" />
 	<property name="picture" value="https://vignette.wikia.nocookie.net/medabots/images/7/73/Imagen_de_ejemplo.png" />
 		<property name="articles">
 			<list>

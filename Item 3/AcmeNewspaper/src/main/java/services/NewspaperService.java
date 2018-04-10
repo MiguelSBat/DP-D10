@@ -32,6 +32,10 @@ public class NewspaperService {
 
 	@Autowired
 	private ArticleService		articleService;
+	
+
+	@Autowired
+	private ConfigService		configService;
 
 
 	//Constructors
@@ -44,6 +48,7 @@ public class NewspaperService {
 		final Collection<Article> articles = new ArrayList<>();
 
 		result = new Newspaper();
+		result.setTaboo(false);
 		result.setArticles(articles);
 		return result;
 	}
@@ -75,6 +80,9 @@ public class NewspaperService {
 	}
 	public Newspaper save(final Newspaper newspaper) {
 		Newspaper result;
+		
+		if (this.configService.isTaboo(newspaper.getTitle()) || this.configService.isTaboo(newspaper.getDescription()) || this.configService.isTaboo(newspaper.getPicture()))
+			newspaper.setTaboo(true);
 
 		if (newspaper.getId() != 0)
 			result = this.newspaperRepository.save(newspaper);
@@ -131,5 +139,11 @@ public class NewspaperService {
 
 		return result;
 	}
+	public Collection<Newspaper> findTaboo() {
+		Collection<Newspaper> newspapers;
 
+		newspapers = this.newspaperRepository.findTaboo();
+
+		return newspapers;
+	}
 }

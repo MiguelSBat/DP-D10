@@ -78,6 +78,7 @@
 					<li class="arrow"></li>
 					<security:authorize access="hasRole('ADMIN')">
 					<li><a href="administrator/chirp/list.do"><spring:message code="master.page.administrator.chirps" /></a></li>
+					<li><a href="administrator/newspaper/list.do"><spring:message code="master.page.administrator.newspaper" /></a></li>
 					<li><a href="administrator/article/list.do"><spring:message code="master.page.administrator.articles" /></a></li>
 					<li><a href="administrator/config/display.do"><spring:message code="master.page.administrator.tabooWords" /></a></li>
 					<li><a href="actor/create.do?actorType=ADMIN"><spring:message

@@ -26,6 +26,7 @@ public class Newspaper extends DomainEntity {
 	private Date	publicationDate;
 	private String	picture;
 	private boolean	publicity;
+	private boolean	taboo;
 
 
 	@NotBlank
@@ -95,5 +96,15 @@ public class Newspaper extends DomainEntity {
 	public void removeArticle(final Article article) {
 		this.articles.remove(article);
 	}
+
+	public boolean isTaboo() {
+		return taboo;
+	}
+
+	public void setTaboo(boolean taboo) {
+		this.taboo = taboo;
+	}
+
+	
 
 }
