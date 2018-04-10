@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
@@ -17,7 +16,7 @@ import controllers.AbstractController;
 import domain.CreditCard;
 
 @Controller
-@RequestMapping("/creditcard/customer")
+@RequestMapping("/customer/creditcard")
 public class CreditCardCustomerController extends AbstractController {
 
 	//Services
@@ -38,7 +37,7 @@ public class CreditCardCustomerController extends AbstractController {
 	//Create
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView create(@RequestParam final int sponsorshipId) {
+	public ModelAndView create() {
 		ModelAndView result;
 		CreditCard creditcard;
 
@@ -77,7 +76,7 @@ public class CreditCardCustomerController extends AbstractController {
 	private ModelAndView createEditModelAndView(final CreditCard creditcard, final String messageCode) {
 		ModelAndView result;
 
-		result = new ModelAndView("creditCard/edit");
+		result = new ModelAndView("creditcard/create");
 		result.addObject("creditcard", creditcard);
 		result.addObject("message", messageCode);
 
