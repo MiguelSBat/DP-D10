@@ -16,7 +16,7 @@ import controllers.AbstractController;
 import domain.CreditCard;
 
 @Controller
-@RequestMapping("/customer/creditcard")
+@RequestMapping("/customer/creditCard")
 public class CreditCardCustomerController extends AbstractController {
 
 	//Services
@@ -39,25 +39,25 @@ public class CreditCardCustomerController extends AbstractController {
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView result;
-		CreditCard creditcard;
+		CreditCard creditCard;
 
-		creditcard = this.creditCardService.create();
-		result = this.createEditModelAndView(creditcard);
+		creditCard = this.creditCardService.create();
+		result = this.createEditModelAndView(creditCard);
 		return result;
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid final CreditCard creditcard, final BindingResult binding) {
+	public ModelAndView save(@Valid final CreditCard creditCard, final BindingResult binding) {
 		ModelAndView result;
 
 		if (binding.hasErrors())
-			result = this.createEditModelAndView(creditcard);
+			result = this.createEditModelAndView(creditCard);
 		else
 			try {
-				this.creditCardService.save(creditcard);
+				this.creditCardService.save(creditCard);
 				result = new ModelAndView("redirect:/newspaper/list.do");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(creditcard, "creditcard.commit.error");
+				result = this.createEditModelAndView(creditCard, "creditCard.commit.error");
 			}
 
 		return result;
@@ -65,19 +65,19 @@ public class CreditCardCustomerController extends AbstractController {
 
 	//Ancillary methods
 
-	private ModelAndView createEditModelAndView(final CreditCard creditcard) {
+	private ModelAndView createEditModelAndView(final CreditCard creditCard) {
 		ModelAndView result;
 
-		result = this.createEditModelAndView(creditcard, null);
+		result = this.createEditModelAndView(creditCard, null);
 
 		return result;
 	}
 
-	private ModelAndView createEditModelAndView(final CreditCard creditcard, final String messageCode) {
+	private ModelAndView createEditModelAndView(final CreditCard creditCard, final String messageCode) {
 		ModelAndView result;
 
-		result = new ModelAndView("creditcard/create");
-		result.addObject("creditcard", creditcard);
+		result = new ModelAndView("creditCard/edit");
+		result.addObject("creditCard", creditCard);
 		result.addObject("message", messageCode);
 
 		return result;

@@ -453,7 +453,7 @@
 		</property>
 	</bean>	
 	
-	<bean id="creditcard1" class="domain.CreditCard">
+	<bean id="creditCard1" class="domain.CreditCard">
 		<property name="holderName" value="Francisco Perez" />
 		<property name="brandName" value="Visa" />
 		<property name="number" value="4532013067246621" />
@@ -466,7 +466,7 @@
 			</list>	
 		</property>
 	</bean>
-	<bean id="creditcard2" class="domain.CreditCard">
+	<bean id="creditCard2" class="domain.CreditCard">
 		<property name="holderName" value="Señor que esta cansado de rellenar el populate" />
 		<property name="brandName" value="Visa" />
 		<property name="number" value="4532013067246621" />
@@ -489,7 +489,7 @@
 		<property name="postalAddress" value="Calle Fontenla, 2" />
 		<property name="creditCard">
 			<list>
-				<ref bean="creditcard1"/>
+				<ref bean="creditCard1"/>
 			</list>	
 		</property>
 		<property name="userAccount" ref="userAccount3" />

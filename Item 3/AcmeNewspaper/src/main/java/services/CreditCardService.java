@@ -66,7 +66,7 @@ public class CreditCardService {
 		customer = (Customer) this.actorService.findByPrincipal();
 		result = this.creditCardRepository.save(creditCard);
 
-		//añado la creditcard al customer
+		//añado la creditCard al customer
 		aux = customer.getCreditCard();
 		aux.add(result);
 		customer.setCreditCard(aux);
@@ -91,14 +91,14 @@ public class CreditCardService {
 		return this.creditCardRepository.findByCustomer(customerid);
 	}
 
-	public void subscribe(final Newspaper newspaper, final CreditCard creditcard) {
+	public void subscribe(final Newspaper newspaper, final CreditCard creditCard) {
 		Customer customer;
 		customer = (Customer) this.actorService.findByPrincipal();
-		Assert.isTrue(customer.getCreditCard().contains(creditcard));
+		Assert.isTrue(customer.getCreditCard().contains(creditCard));
 
-		final Collection<Newspaper> aux = creditcard.getNewspapers();
+		final Collection<Newspaper> aux = creditCard.getNewspapers();
 		aux.add(newspaper);
-		creditcard.setNewspapers(aux);
+		creditCard.setNewspapers(aux);
 
 	}
 

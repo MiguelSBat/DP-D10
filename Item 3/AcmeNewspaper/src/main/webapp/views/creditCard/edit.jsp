@@ -10,7 +10,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="${requestURI}"	modelAttribute="creditCard">
+<form:form action="customer/creditCard/edit.do"	modelAttribute="creditCard">
 
 <form:hidden path="id"/>
 <form:hidden path="version"/>
@@ -50,12 +50,13 @@
 	<form:errors cssClass="error" path="expirationYear" />
 	<br />
 	
+<%-- esto te lo he comentado 
 <form:label path="cvvCode">
 	<spring:message code="creditcard.cvvCode"/>	
 	</form:label>
 	<form:input path="cvvCode" />
 	<form:errors cssClass="error" path="cvvCode" />
-	<br />
+	<br /> --%>
 
 <input type="submit" name="save"
 		value="<spring:message code="creditcard.save" />" />

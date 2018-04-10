@@ -60,8 +60,8 @@
 		<security:intercept-url pattern="/user/article/list.do" access="hasRole('USER')" />
 		<security:intercept-url pattern="/administrator/article/list.do" access="hasRole('ADMIN')" />
 		
-		<security:intercept-url pattern="/customer/creditcard/edit.do" access="hasRole('CUSTOMER')" />
-		<security:intercept-url pattern="/customer/creditcard/create.do" access="hasRole('CUSTOMER')" />	
+		<security:intercept-url pattern="/customer/creditCard/edit.do" access="hasRole('CUSTOMER')" />
+		<security:intercept-url pattern="/customer/creditCard/create.do" access="hasRole('CUSTOMER')" />	
 			
 		<security:intercept-url pattern="/user/followup/**" access="hasRole('USER')" />
 		
