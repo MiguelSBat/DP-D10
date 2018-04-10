@@ -48,7 +48,7 @@
 		
 		<security:intercept-url pattern="/user/list.do" access="permitAll" />
 		<security:intercept-url pattern="/user/display.do" access="permitAll" />
-		<security:intercept-url pattern="/user/user/**" access="permitAll" />
+		<security:intercept-url pattern="/user/user/**" access="hasRole('USER')" />
 		
 		<security:intercept-url pattern="/article/list.do" access="permitAll" />
 		<security:intercept-url pattern="/article/display.do" access="permitAll" />
