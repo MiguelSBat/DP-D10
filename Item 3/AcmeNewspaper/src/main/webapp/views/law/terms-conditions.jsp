@@ -13,6 +13,7 @@
 
 <p><spring:message code="law.terms.body1" /></p>
 <p><spring:message code="law.terms.body2" /></p>
+<p><spring:message code="law.terms.requeriment12" /></p>
 <p><spring:message code="law.terms.about"/>
 <h2 id="cookies-policy"><spring:message code="law.cookies.header" /></h2>
 <p><spring:message code="law.cookies.body" /></p>
