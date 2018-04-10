@@ -2,6 +2,7 @@
 package services;
 
 import java.util.Collection;
+import java.util.HashSet;
 
 import javax.transaction.Transactional;
 
@@ -11,6 +12,10 @@ import org.springframework.util.Assert;
 
 import repositories.UserRepository;
 import domain.Actor;
+import domain.Article;
+import domain.Chirp;
+import domain.FollowUp;
+import domain.Newspaper;
 import domain.User;
 
 @Service
@@ -36,6 +41,11 @@ public class UserService {
 		User result;
 
 		result = new User();
+		result.setArticles(new HashSet<Article>());
+		result.setChirps(new HashSet<Chirp>());
+		result.setFollowUp(new HashSet<FollowUp>());
+		result.setNewspapers(new HashSet<Newspaper>());
+		result.setUsers(new HashSet<User>());
 
 		return result;
 	}
