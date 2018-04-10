@@ -71,6 +71,7 @@ public class ConfigService {
 
 		config = this.findConfiguration();
 		tabooWords = config.getTabooWords();
+		Assert.isTrue(!tabooWords.contains(tabooWord) && tabooWord != null);
 		tabooWords.add(tabooWord);
 		config.setTabooWords(tabooWords);
 		result = this.save(config);
