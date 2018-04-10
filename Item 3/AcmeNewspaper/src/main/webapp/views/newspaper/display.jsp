@@ -40,8 +40,9 @@
 			<jstl:if test="${newspaper.getPublicity()=='true'}"><spring:message code="newspaper.private" /></jstl:if>
 			<jstl:if test="${newspaper.getPublicity()=='false'}"><spring:message code="newspaper.public" /></jstl:if>
 		</li>
-
-
+	<jstl:if test="${!mostrarArticles}"><spring:message code="newspaper.nosub" /></jstl:if>
+	
+	<jstl:if test="${mostrarArticles}">
 		<li><b><spring:message code="newspaper.picture"></spring:message>:</b>
 				<jstl:out value="${newspaper.getPicture()}"/>
 				</br>
@@ -77,6 +78,7 @@
 				</jstl:if>
 			</li>
 	</ul>
+	</jstl:if>
 
 </div>
 

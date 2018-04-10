@@ -20,6 +20,8 @@ import services.ArticleService;
 import services.NewspaperService;
 import services.UserService;
 import domain.Article;
+import domain.CreditCard;
+import domain.Customer;
 import domain.Newspaper;
 import domain.User;
 
@@ -124,15 +126,16 @@ public class NewspaperController extends AbstractController {
 		final Newspaper newspaper;
 		newspaper = this.newspaperService.findOne(newspaperId);
 		result.addObject("newspaper", newspaper);
-		
+		boolean mostrarArticles=true;
 		User u;
 		if(this.actorService.isLogged()){
+		if(this.actorService.findByPrincipal() instanceof User){
 		final User actual = (User) this.actorService.findByPrincipal();
 		Boolean EsAutor =actual.getNewspapers().contains(newspaper);
 		Boolean NoEstaPublicado=newspaper.getPublicationDate()==null;
 		Boolean Mostrar=NoEstaPublicado&&EsAutor;
 		result.addObject("EsAutor",Mostrar);
-		}
+		}}
 		final Collection<Article> articles = newspaper.getArticles();
 		final TreeMap<Integer, User> mapaMegaComplejo = new TreeMap<>();
 		
@@ -141,9 +144,22 @@ public class NewspaperController extends AbstractController {
 		
 			mapaMegaComplejo.put(a.getId(), u);
 		}
+		if(newspaper.getPublicity()==true){
+			mostrarArticles=false;
+			if(this.actorService.findByPrincipal() instanceof Customer){
+				Customer c =(Customer)this.actorService.findByPrincipal();
+				Collection<CreditCard> cards=c.getCreditCard();
+				for(CreditCard card: cards){
+					if(card.getNewspapers().contains(newspaper)){
+						mostrarArticles=true;
+					}
+				}
+			}
+		}
 		
 	
 		result.addObject("mapaMegaComplejo", mapaMegaComplejo);
+		result.addObject("mostrarArticles", mostrarArticles);
 		
 
 		return result;
