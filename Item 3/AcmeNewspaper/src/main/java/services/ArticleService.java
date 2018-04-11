@@ -161,7 +161,12 @@ public class ArticleService {
 
 		return result;
 	}
-
+	public Article updateDate(final Article article) {
+		Article result;
+		result = this.articleRepository.save(article);
+		return result;
+	}
+	
 	public Article findOne(final int articleId) {
 		Article result;
 
