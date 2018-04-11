@@ -20,7 +20,6 @@ import services.ArticleService;
 import services.NewspaperService;
 import services.UserService;
 import domain.Article;
-import domain.CreditCard;
 import domain.Customer;
 import domain.Newspaper;
 import domain.User;
@@ -149,10 +148,9 @@ public class NewspaperController extends AbstractController {
 			mostrarArticles = false;
 			if (this.actorService.findByPrincipal() instanceof Customer) {
 				final Customer c = (Customer) this.actorService.findByPrincipal();
-				final Collection<CreditCard> cards = c.getCreditCard();
-				for (final CreditCard card : cards)
-					if (card.getNewspapers().contains(newspaper))
-						mostrarArticles = true;
+				final Collection<Newspaper> customerNewspapers = this.newspaperService.findByCustomerID(c.getId());
+				if (customerNewspapers().contains(newspaper))
+					mostrarArticles = true;
 			}
 		}
 

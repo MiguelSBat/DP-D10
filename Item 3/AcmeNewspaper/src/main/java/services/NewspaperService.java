@@ -32,7 +32,6 @@ public class NewspaperService {
 
 	@Autowired
 	private ArticleService		articleService;
-	
 
 	@Autowired
 	private ConfigService		configService;
@@ -80,7 +79,7 @@ public class NewspaperService {
 	}
 	public Newspaper save(final Newspaper newspaper) {
 		Newspaper result;
-		
+
 		if (this.configService.isTaboo(newspaper.getTitle()) || this.configService.isTaboo(newspaper.getDescription()) || this.configService.isTaboo(newspaper.getPicture()))
 			newspaper.setTaboo(true);
 
@@ -102,18 +101,16 @@ public class NewspaperService {
 		newspaper = this.newspaperRepository.findOne(newspaperId);
 		final User u = (User) this.actorService.findByPrincipal();
 		Assert.isTrue(u.getNewspapers().contains(newspaper));
-		Assert.isTrue(newspaper.getPublicationDate()==null);
-	
+		Assert.isTrue(newspaper.getPublicationDate() == null);
+		Assert.isTrue(!newspaper.getArticles().isEmpty());
 		Assert.notNull(newspaper);
-		for(Article a:newspaper.getArticles()){
+		for (final Article a : newspaper.getArticles())
 			Assert.isTrue(!a.isDraftMode());
-		}
 		newspaper.setPublicationDate(new Date(System.currentTimeMillis()));
-		
+
 		return newspaper;
 	}
-	
-	
+
 	public Newspaper findOne(final int newspaperId) {
 		Newspaper result;
 
