@@ -91,10 +91,10 @@
 <fmt:formatNumber value="${ratioPublicVsPrivate}" pattern="####0.00"/>
 <br/><br/><br/>
 
-<b><spring:message code="administrator.avgApPUN"/></b>
+<b><spring:message code="administrator.avgApPRN"/></b>
 <fmt:formatNumber value="${avgArticlePerPrivateNews}" pattern="####0.00"/>
 <br/>
-<b><spring:message code="administrator.avgApPRN"/></b>
+<b><spring:message code="administrator.avgApPUN"/></b>
 <fmt:formatNumber value="${avgArticlePerPublicNews }" pattern="####0.00"/>
 <br/><br/><br/>
 
