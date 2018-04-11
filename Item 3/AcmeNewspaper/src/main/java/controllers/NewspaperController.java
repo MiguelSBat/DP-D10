@@ -100,19 +100,19 @@ public class NewspaperController extends AbstractController {
 	public ModelAndView list(final String criteria) {
 		ModelAndView result;
 		Collection<Newspaper> newspapers;
-		Collection<Newspaper> newspaperscustomer = new ArrayList<Newspaper>();
-		final Customer customer = (Customer) this.actorService.findByPrincipal();
 
 		newspapers = this.newspaperService.findByCriteria(criteria);
 		if (criteria == null)
 			newspapers = this.newspaperService.findAll();
 
-		if (this.actorService.isLogged() && this.actorService.findByPrincipal() instanceof Customer)
-			newspaperscustomer = this.newspaperService.findByCustomerID(customer.getId());
-
 		result = new ModelAndView("newspaper/list");
 		result.addObject("newspapers", newspapers);
-		result.addObject("newspaperscustomer", newspaperscustomer);
+		if (this.actorService.isLogged() && this.actorService.findByPrincipal() instanceof Customer) {
+			Collection<Newspaper> newspaperscustomer = new ArrayList<Newspaper>();
+			final Customer customer = (Customer) this.actorService.findByPrincipal();
+			newspaperscustomer = this.newspaperService.findByCustomerID(customer.getId());
+			result.addObject("newspaperscustomer", newspaperscustomer);
+		}
 
 		return result;
 	}

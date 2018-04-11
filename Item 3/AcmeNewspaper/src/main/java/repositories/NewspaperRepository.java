@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import domain.Article;
 import domain.Newspaper;
 
 @Repository
@@ -21,4 +20,10 @@ public interface NewspaperRepository extends JpaRepository<Newspaper, Integer> {
 
 	@Query("select n from Newspaper n where n.taboo=1")
 	Collection<Newspaper> findTaboo();
+
+	@Query("select c.newspapers from CreditCard c where c.id=?1")
+	Collection<Newspaper> findByCreditCardID(int cardID);
+
+	@Query("select c.newspapers from Customer cu join cu.creditCard c where cu.id=?1")
+	Collection<Newspaper> findByCustomerID(int customerID);
 }

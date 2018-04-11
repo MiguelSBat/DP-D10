@@ -143,4 +143,12 @@ public class NewspaperService {
 
 		return newspapers;
 	}
+
+	public Collection<Newspaper> findByCreditCardID(final int cardID) {
+		return this.newspaperRepository.findByCreditCardID(cardID);
+	}
+
+	public Collection<Newspaper> findByCustomerID(final int customerID) {
+		return this.newspaperRepository.findByCustomerID(customerID);
+	}
 }

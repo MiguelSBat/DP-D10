@@ -13,6 +13,7 @@ import repositories.CreditCardRepository;
 import domain.CreditCard;
 import domain.Customer;
 import domain.Newspaper;
+import forms.SubscribeForm;
 
 @Service
 @Transactional
@@ -91,14 +92,26 @@ public class CreditCardService {
 		return this.creditCardRepository.findByCustomer(customerid);
 	}
 
-	public void subscribe(final Newspaper newspaper, final CreditCard creditCard) {
+	public SubscribeForm createForm(final Newspaper newspaper) {
+		SubscribeForm result;
+
+		result = new SubscribeForm();
+		result.setNewspaper(newspaper);
+
+		return result;
+	}
+
+	public void subscribe(final SubscribeForm subscribeForm) {
 		Customer customer;
+		final Newspaper newspaper = subscribeForm.getNewspapers();
+		final CreditCard creditCard = subscribeForm.getCreditCard();
 		customer = (Customer) this.actorService.findByPrincipal();
 		Assert.isTrue(customer.getCreditCard().contains(creditCard));
 
 		final Collection<Newspaper> aux = creditCard.getNewspapers();
 		aux.add(newspaper);
 		creditCard.setNewspapers(aux);
+		this.save(creditCard);
 
 	}
 
