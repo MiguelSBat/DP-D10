@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ArticleService;
+import services.NewspaperService;
 import services.UserService;
 import domain.Article;
+import domain.Newspaper;
 import domain.User;
 
 @Controller
@@ -25,6 +27,8 @@ public class ArticleController extends AbstractController {
 	private ArticleService	articleService;
 	@Autowired
 	private UserService		userService;
+	@Autowired
+	private NewspaperService		newspaperService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -63,9 +67,11 @@ public class ArticleController extends AbstractController {
 
 		article = this.articleService.findOne(articleId);
 		user = this.userService.UserByArticle(articleId);
+		Newspaper newspaper=newspaperService.findByArticleId(articleId);
 		result = new ModelAndView("article/display");
 		result.addObject("article", article);
 		result.addObject("user", user);
+		result.addObject("newspaperId", newspaper.getId());
 
 		return result;
 	}

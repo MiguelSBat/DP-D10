@@ -104,10 +104,13 @@ public class NewspaperService {
 		Assert.isTrue(newspaper.getPublicationDate() == null);
 		Assert.isTrue(!newspaper.getArticles().isEmpty());
 		Assert.notNull(newspaper);
-		for (final Article a : newspaper.getArticles())
+		for (final Article a : newspaper.getArticles()){
 			Assert.isTrue(!a.isDraftMode());
+//			a.setPublishMoment(new Date(System.currentTimeMillis()));
+//			articleService.save(a, newspaperId);
+		}
 		newspaper.setPublicationDate(new Date(System.currentTimeMillis()));
-
+		newspaper=newspaperRepository.save(newspaper);
 		return newspaper;
 	}
 

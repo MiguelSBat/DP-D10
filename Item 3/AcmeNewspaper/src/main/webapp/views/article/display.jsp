@@ -41,7 +41,7 @@
 		<br />
 	</jstl:forEach>
 	<br />
-	<a href="newspaper/display.do&newspaperId=${newspaperId}"><spring:message code="article.backToNewspaper"/></a>
+	<a href="newspaper/display.do?newspaperId=${newspaperId}"><spring:message code="article.backToNewspaper"/></a>
 </div>
 
 
