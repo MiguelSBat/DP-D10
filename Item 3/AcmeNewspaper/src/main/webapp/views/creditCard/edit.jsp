@@ -50,13 +50,13 @@
 	<form:errors cssClass="error" path="expirationYear" />
 	<br />
 	
-<%-- esto te lo he comentado 
-<form:label path="cvvCode">
+
+<form:label path="CVV">
 	<spring:message code="creditcard.cvvCode"/>	
 	</form:label>
-	<form:input path="cvvCode" />
-	<form:errors cssClass="error" path="cvvCode" />
-	<br /> --%>
+	<form:input path="CVV" />
+	<form:errors cssClass="error" path="CVV" />
+	<br />
 
 <input type="submit" name="save"
 		value="<spring:message code="creditcard.save" />" />

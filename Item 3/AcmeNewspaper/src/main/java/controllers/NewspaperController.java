@@ -127,6 +127,7 @@ public class NewspaperController extends AbstractController {
 		newspaper = this.newspaperService.findOne(newspaperId);
 		result.addObject("newspaper", newspaper);
 		boolean mostrarArticles = true;
+		mostrarArticles = false;
 		User u;
 		if (this.actorService.isLogged())
 			if (this.actorService.findByPrincipal() instanceof User) {
@@ -135,6 +136,7 @@ public class NewspaperController extends AbstractController {
 				final Boolean NoEstaPublicado = newspaper.getPublicationDate() == null;
 				final Boolean Mostrar = NoEstaPublicado && EsAutor;
 				result.addObject("EsAutor", Mostrar);
+				mostrarArticles = EsAutor;
 			}
 		final Collection<Article> articles = newspaper.getArticles();
 		final TreeMap<Integer, User> mapaMegaComplejo = new TreeMap<>();
@@ -144,8 +146,10 @@ public class NewspaperController extends AbstractController {
 
 			mapaMegaComplejo.put(a.getId(), u);
 		}
+		if (newspaper.getPublicity() == false)
+		mostrarArticles = true;
 		if (newspaper.getPublicity() == true) {
-			mostrarArticles = false;
+		
 			if (this.actorService.isLogged()&&this.actorService.findByPrincipal() instanceof Customer) {
 				final Customer c = (Customer) this.actorService.findByPrincipal();
 				final Collection<Newspaper> customerNewspapers = this.newspaperService.findByCustomerID(c.getId());
