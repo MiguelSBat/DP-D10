@@ -154,4 +154,69 @@ public class NewspaperService {
 	public Collection<Newspaper> findByCustomerID(final int customerID) {
 		return this.newspaperRepository.findByCustomerID(customerID);
 	}
+
+	//DASHBOARD
+
+	public Double averageArticlesPerNewspaper() {
+		return this.newspaperRepository.averageArticlesPerNewspaper();
+	}
+
+	public Double standardArticlesPerNewspaper() {
+		return this.newspaperRepository.standardArticlesPerNewspaper();
+	}
+
+	public Collection<Newspaper> findNewspapersWithMoreArticlesThanAverage() {
+		final Collection<Newspaper> result = this.newspaperRepository.findNewspapersWithMoreArticlesThanAverage();
+		return result;
+	}
+
+	public Collection<Newspaper> findNewspapersWithLessArticlesThanAverage() {
+		final Collection<Newspaper> result = this.newspaperRepository.findNewspapersWithLessArticlesThanAverage();
+		return result;
+	}
+
+	public Double ratioPublicVsPrivate() {
+		return this.newspaperRepository.ratioPublicVsPrivate();
+	}
+
+	public Double averageArticlesPerPrivateNewspaper() {
+		return this.newspaperRepository.averageArticlesPerPrivateNewspaper();
+	}
+
+	public Double averageArticlesPerPublicNewspaper() {
+		return this.newspaperRepository.averageArticlesPerPublicNewspaper();
+	}
+
+	public Collection<Newspaper> findNewPrivateByUser(final int id) {
+		final Collection<Newspaper> result = this.newspaperRepository.findNewPrivateByUser(id);
+		return result;
+	}
+
+	public Collection<Newspaper> findNewPublicByUser(final int id) {
+		final Collection<Newspaper> result = this.newspaperRepository.findNewPublicByUser(id);
+		return result;
+	}
+
+	public Double avgRatioPrivateVsPublicPerUser() {
+		final Collection<User> users = this.userService.findAll();
+		Collection<Newspaper> priv = new ArrayList<Newspaper>();
+		Collection<Newspaper> pub = new ArrayList<Newspaper>();
+		Double aux = 0.0;
+		Double d = 1.0;
+		for (final User u : users) {
+			priv = this.findNewPrivateByUser(u.getId());
+			pub = this.findNewPublicByUser(u.getId());
+
+			d = 1.0 * pub.size();
+
+			if (d == 0)
+				d = 1.0;
+
+			aux = aux + (100 * priv.size() / d);
+		}
+		return aux / users.size();
+
+	}
+
+	//dashboard
 }

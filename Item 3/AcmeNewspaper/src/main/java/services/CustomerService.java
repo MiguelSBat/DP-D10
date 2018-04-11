@@ -68,4 +68,8 @@ public class CustomerService {
 		this.customerRepository.flush();
 	}
 
+	public Double ratioSubscriptorsVScustomer() {
+		return this.customerRepository.ratioSubscriptorsVScustomer();
+	}
+
 }

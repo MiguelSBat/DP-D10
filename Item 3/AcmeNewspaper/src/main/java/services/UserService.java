@@ -148,4 +148,40 @@ public class UserService {
 
 		return result;
 	}
+
+	public Double averageNewspaperperUser() {
+		return this.userRepository.averageNewspaperperUser();
+	}
+
+	public Double standardNewspaperperUser() {
+		return this.userRepository.standardNewspaperperUser();
+	}
+
+	public Double averageArticlesperUser() {
+		return this.userRepository.averageArticlesperUser();
+	}
+
+	public Double standarArticlesperUser() {
+		return this.userRepository.standarArticlesperUser();
+	}
+
+	public Double ratioWriterNewspaper() {
+		return this.userRepository.ratioWriterNespaper();
+	}
+
+	public Double ratioWritersArticle() {
+		return this.userRepository.ratioWritersArticle();
+	}
+
+	public Double avgChirpsPerUser() {
+		return this.userRepository.avgChirpsPerUser();
+	}
+
+	public Double standardChirpsperUser() {
+		return this.userRepository.standardChirpsperUser();
+	}
+
+	public Double ratioUserwithMoreChirps() {
+		return this.userRepository.ratioUserwithMoreChirps();
+	}
 }

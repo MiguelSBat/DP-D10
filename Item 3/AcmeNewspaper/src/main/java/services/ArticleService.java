@@ -218,5 +218,6 @@ public class ArticleService {
 		result = this.articleRepository.findTaboo();
 
 		return result;
+
 	}
 }

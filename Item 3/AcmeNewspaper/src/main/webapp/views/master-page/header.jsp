@@ -83,6 +83,8 @@
 					<li><a href="administrator/config/display.do"><spring:message code="master.page.administrator.tabooWords" /></a></li>
 					<li><a href="actor/create.do?actorType=ADMIN"><spring:message
 					code="master.page.createAdmin" /></a></li>
+					<li><a href="administrator/dashboard.do"><spring:message
+								code="master.page.administrator.dashboard" /></a></li>
 					</security:authorize>		
 					<security:authorize access="hasRole('USER')">
 					<li><a href="user/chirp/list.do"><spring:message code="master.page.user.chirps.followed" /></a></li>

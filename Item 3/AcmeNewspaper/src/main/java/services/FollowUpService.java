@@ -98,4 +98,33 @@ public class FollowUpService {
 		this.followUpRepository.flush();
 	}
 
+	//dashboard
+
+	public Double avgFollowperArticle() {
+		return this.followUpRepository.avgFollowperArticle();
+	}
+
+	public Collection<FollowUp> followsOneWeakPublicated() {
+		final Collection<FollowUp> result = this.followUpRepository.followsOneWeakPublicated();
+		return result;
+	}
+
+	public Collection<FollowUp> followsTwoWeakPublicated() {
+		final Collection<FollowUp> result = this.followUpRepository.followTwoWeakPublicated();
+		return result;
+	}
+
+	public Double avgfollowsOneWeakPublicated() {
+		final Collection<Article> art = this.articleService.findAll();
+		final Collection<FollowUp> foll = this.followsOneWeakPublicated();
+		final Double res = 1.0 * foll.size() / art.size();
+		return res;
+	}
+
+	public Double avgfollowsTwoWeakPublicated() {
+		final Collection<Article> art = this.articleService.findAll();
+		final Collection<FollowUp> foll = this.followsTwoWeakPublicated();
+		final Double res = 1.0 * foll.size() / art.size();
+		return res;
+	}
 }
