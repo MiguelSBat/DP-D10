@@ -149,7 +149,7 @@ public class NewspaperController extends AbstractController {
 			if (this.actorService.findByPrincipal() instanceof Customer) {
 				final Customer c = (Customer) this.actorService.findByPrincipal();
 				final Collection<Newspaper> customerNewspapers = this.newspaperService.findByCustomerID(c.getId());
-				if (customerNewspapers().contains(newspaper))
+				if (customerNewspapers.contains(newspaper))
 					mostrarArticles = true;
 			}
 		}
