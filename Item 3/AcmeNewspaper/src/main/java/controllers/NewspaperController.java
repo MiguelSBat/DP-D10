@@ -146,7 +146,7 @@ public class NewspaperController extends AbstractController {
 		}
 		if (newspaper.getPublicity() == true) {
 			mostrarArticles = false;
-			if (this.actorService.findByPrincipal() instanceof Customer) {
+			if (this.actorService.isLogged()&&this.actorService.findByPrincipal() instanceof Customer) {
 				final Customer c = (Customer) this.actorService.findByPrincipal();
 				final Collection<Newspaper> customerNewspapers = this.newspaperService.findByCustomerID(c.getId());
 				if (customerNewspapers.contains(newspaper))
