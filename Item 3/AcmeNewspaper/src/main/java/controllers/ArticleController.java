@@ -10,10 +10,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ActorService;
 import services.ArticleService;
+import services.FollowUpService;
 import services.NewspaperService;
 import services.UserService;
+import domain.Actor;
 import domain.Article;
+import domain.FollowUp;
 import domain.Newspaper;
 import domain.User;
 
@@ -24,11 +28,19 @@ public class ArticleController extends AbstractController {
 	// Services ---------------------------------------------------------------
 
 	@Autowired
-	private ArticleService	articleService;
+	private ArticleService		articleService;
+
 	@Autowired
-	private UserService		userService;
+	private UserService			userService;
+
 	@Autowired
-	private NewspaperService		newspaperService;
+	private NewspaperService	newspaperService;
+
+	@Autowired
+	private FollowUpService		followUpService;
+
+	@Autowired
+	private ActorService		actorService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -64,15 +76,35 @@ public class ArticleController extends AbstractController {
 		final ModelAndView result;
 		Article article;
 		User user;
+		Actor actor;
+		Newspaper newspaper;
+		boolean privateNewspaper;
+		Integer userId;
+		Collection<FollowUp> followups;
 
+		userId = null;
+		privateNewspaper = false;
 		article = this.articleService.findOne(articleId);
 		user = this.userService.UserByArticle(articleId);
-		Newspaper newspaper=newspaperService.findByArticleId(articleId);
+		followups = this.followUpService.findByArticleId(articleId);
+		newspaper = this.newspaperService.findByArticleId(articleId);
 		result = new ModelAndView("article/display");
 		result.addObject("article", article);
 		result.addObject("user", user);
 		result.addObject("newspaperId", newspaper.getId());
-
+		result.addObject("followups", followups);
+		if (this.actorService.isLogged()) {
+			actor = this.actorService.findByPrincipal();
+			if (actor instanceof User) {
+				user = (User) actor;
+				if (newspaper.getPublicity() == false)
+					privateNewspaper = true;
+				if (user.getNewspapers().contains(newspaper))
+					userId = actor.getId();
+			}
+		}
+		result.addObject("privateNewspaper", privateNewspaper);
+		result.addObject("userId", userId);
 		return result;
 	}
 	// Edition ----------------------------------------------------------------

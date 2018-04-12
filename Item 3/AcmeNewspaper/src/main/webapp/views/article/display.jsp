@@ -17,6 +17,11 @@
 
 	<br />
 	
+	<a href="user/display.do?userId=${user.id}" ><spring:message code="article.Autor"/></a>
+
+	<br />
+	<br />
+	
 	<b><spring:message code="article.title"/>:</b>
 	<jstl:out value="${article.title}" />
 	<br />
@@ -30,7 +35,7 @@
 	<jstl:out value="${article.summary}" />
 	<br />
 	<br />
-	
+	<jstl:if test="${privateNewspaper==true || userId!=null}">
 	<b><spring:message code="article.text"/>:</b>
 	<jstl:out value="${article.text}" />
 	<br />
@@ -41,11 +46,46 @@
 		<br />
 	</jstl:forEach>
 	<br />
-	<a href="newspaper/display.do?newspaperId=${newspaperId}"><spring:message code="article.backToNewspaper"/></a>
+	</jstl:if>
 </div>
+<jstl:if test="${privateNewspaper==true || userId!=null}">
+<jstl:forEach items="${followups}" var="step">
+<div style="margin-left: 6%;" class="followup">
+
+	<br />
 
 
 
+
+	
+	<b><spring:message code="article.title"/>:</b>
+	<jstl:out value="${step.title}" />
+	<br />
+	
+	<b><spring:message code="article.publishMoment"/>:</b> 
+	<fmt:formatDate value="${step.publishMoment}" pattern="${dateFormat}" />
+	<br />
+	<br />
+	
+	<b><spring:message code="article.summary"/>:</b>
+	<jstl:out value="${step.summary}" />
+	<br />
+	<br />
+	
+	<b><spring:message code="article.text"/>:</b>
+	<jstl:out value="${step.text}" />
+	<br />
+	
+	
+	<jstl:forEach items="${step.pictures}" var="current">
+		<img style="max-width: 20vw;" src="${current}" alt="${current}" />
+		<br />
+	</jstl:forEach>
+	<br />
+</div>
+</jstl:forEach>
+</jstl:if>
+<a href="newspaper/display.do?newspaperId=${newspaperId}"><spring:message code="article.backToNewspaper"/></a>
 
 
 	
