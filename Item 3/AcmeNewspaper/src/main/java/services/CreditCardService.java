@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
@@ -41,7 +42,11 @@ public class CreditCardService {
 	public CreditCard create() {
 		CreditCard result;
 
+		final Collection<Newspaper> newspapers = new ArrayList<Newspaper>();
+
 		result = new CreditCard();
+
+		result.setNewspapers(newspapers);
 
 		return result;
 	}

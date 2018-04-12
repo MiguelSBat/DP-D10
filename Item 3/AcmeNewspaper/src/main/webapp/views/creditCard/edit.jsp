@@ -14,6 +14,7 @@
 
 <form:hidden path="id"/>
 <form:hidden path="version"/>
+<form:hidden path="newspapers"/>
 
 <form:label path="holderName">
 		<spring:message code="creditcard.holderName" />:
