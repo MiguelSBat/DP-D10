@@ -103,7 +103,7 @@ public class CreditCardService {
 
 	public void subscribe(final SubscribeForm subscribeForm) {
 		Customer customer;
-		final Newspaper newspaper = subscribeForm.getNewspapers();
+		final Newspaper newspaper = subscribeForm.getNewspaper();
 		final CreditCard creditCard = subscribeForm.getCreditCard();
 		customer = (Customer) this.actorService.findByPrincipal();
 		Assert.isTrue(customer.getCreditCard().contains(creditCard));

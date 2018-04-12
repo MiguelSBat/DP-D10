@@ -6,19 +6,19 @@ import domain.Newspaper;
 
 public class SubscribeForm {
 
-	private CreditCard	creditcard;
+	private CreditCard	creditCard;
 	private Newspaper	newspaper;
 
 
 	public CreditCard getCreditCard() {
-		return this.creditcard;
+		return this.creditCard;
 	}
 
 	public void setCreditCard(final CreditCard creditcard) {
-		this.creditcard = creditcard;
+		this.creditCard = creditcard;
 	}
 
-	public Newspaper getNewspapers() {
+	public Newspaper getNewspaper() {
 		return this.newspaper;
 	}
 

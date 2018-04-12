@@ -18,8 +18,8 @@
 	<form:hidden path="newspaper" />
 	
 	
-	<form:label path="creditcard"><spring:message code="subcribe.creditcard" /></form:label>
-	<form:select path="creditcard">
+	<form:label path="creditCard"><spring:message code="subcribe.creditcard" /></form:label>
+	<form:select path="creditCard">
 		<form:option
 			label="-----"
 			value="0"
