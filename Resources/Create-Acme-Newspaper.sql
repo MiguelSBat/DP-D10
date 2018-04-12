@@ -1,24 +1,18 @@
-﻿start transaction;
-
+start transaction;
+drop database if exists `acmenewspaper`;
 create database `acmenewspaper`;
-
-use `acmenewspaper`;
-
 create user 'acme-user'@'%' identified by password '*4F10007AADA9EE3DBB2CC36575DFC6F4FDE27577';
-
 create user 'acme-manager'@'%' identified by password '*FDB8CD304EB2317D10C95D797A4BD7492560F55F';
-
+use `acmenewspaper`;
 grant select, insert, update, delete 
 	on `acmenewspaper`.* to 'acme-user'@'%';
-
 grant select, insert, update, delete, create, drop, references, index, alter, 
         create temporary tables, lock tables, create view, create routine, 
         alter routine, execute, trigger, show view
     on `acmenewspaper`.* to 'acme-manager'@'%';
-
 -- MySQL dump 10.13  Distrib 5.5.29, for Win64 (x86)
 --
--- Host: localhost    Database: acmenewspaper
+-- Host: localhost    Database: AcmeNewspaper
 -- ------------------------------------------------------
 -- Server version	5.5.29
 
@@ -713,5 +707,5 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-12 19:21:58
+-- Dump completed on 2018-04-12 20:10:13
 commit;
