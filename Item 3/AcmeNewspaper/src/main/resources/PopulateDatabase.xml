@@ -541,6 +541,7 @@
 		<property name="creditCard">
 			<list>
 				<ref bean="creditCard1"/>
+				<ref bean="creditCard2"/>
 			</list>	
 		</property>
 		<property name="userAccount" ref="userAccount3" />
