@@ -86,6 +86,7 @@ public class CreditCard extends DomainEntity {
 
 
 	@ManyToMany
+	@NotNull
 	public Collection<Newspaper> getNewspapers() {
 		return this.newspapers;
 	}
