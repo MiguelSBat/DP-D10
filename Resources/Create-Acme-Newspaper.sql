@@ -1,18 +1,24 @@
 ﻿start transaction;
-drop database if exists `acmenewspaper`;
+
 create database `acmenewspaper`;
-create user 'acme-user'@'%' identified by password '*4F10007AADA9EE3DBB2CC36575DFC6F4FDE27577';
-create user 'acme-manager'@'%' identified by password '*FDB8CD304EB2317D10C95D797A4BD7492560F55F';
+
 use `acmenewspaper`;
+
+create user 'acme-user'@'%' identified by password '*4F10007AADA9EE3DBB2CC36575DFC6F4FDE27577';
+
+create user 'acme-manager'@'%' identified by password '*FDB8CD304EB2317D10C95D797A4BD7492560F55F';
+
 grant select, insert, update, delete 
 	on `acmenewspaper`.* to 'acme-user'@'%';
+
 grant select, insert, update, delete, create, drop, references, index, alter, 
         create temporary tables, lock tables, create view, create routine, 
         alter routine, execute, trigger, show view
     on `acmenewspaper`.* to 'acme-manager'@'%';
+
 -- MySQL dump 10.13  Distrib 5.5.29, for Win64 (x86)
 --
--- Host: localhost    Database: AcmeNewspaper
+-- Host: localhost    Database: acmenewspaper
 -- ------------------------------------------------------
 -- Server version	5.5.29
 
@@ -107,7 +113,8 @@ CREATE TABLE `article` (
   `text` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `UK_musv04diwb5t9jy6s7maipvij` (`publishMoment`,`taboo`)
+  KEY `UK_n9l0oa2ioqjbnpvj56txwy75r` (`publishMoment`),
+  KEY `UK_6rcu5ngbg90klwheb98n47gja` (`taboo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -706,5 +713,5 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-12 17:44:15
+-- Dump completed on 2018-04-12 19:21:58
 commit;
