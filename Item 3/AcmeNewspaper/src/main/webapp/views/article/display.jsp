@@ -35,7 +35,7 @@
 	<jstl:out value="${article.summary}" />
 	<br />
 	<br />
-	<jstl:if test="${privateNewspaper==true || userId!=null}">
+	<jstl:if test="${privateNewspaper || userId!=null || subscribed}">
 	<b><spring:message code="article.text"/>:</b>
 	<jstl:out value="${article.text}" />
 	<br />
@@ -48,7 +48,7 @@
 	<br />
 	</jstl:if>
 </div>
-<jstl:if test="${privateNewspaper==true || userId!=null}">
+<jstl:if test="${privateNewspaper==true || userId!=null || subscribed}">
 <jstl:forEach items="${followups}" var="step">
 <div style="margin-left: 6%;" class="followup">
 
@@ -86,6 +86,9 @@
 </jstl:forEach>
 </jstl:if>
 <a href="newspaper/display.do?newspaperId=${newspaperId}"><spring:message code="article.backToNewspaper"/></a>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<jstl:if test="${user.id==userId && article.publishMoment!=null}">
 
+<a href="user/followup/create.do?articleId=${article.id}"><spring:message code="article.text"/></a>
 
-	
+</jstl:if>

@@ -90,6 +90,7 @@
 <jstl:if test="${Error}">
 	<spring:message code="newspaper.error"/>
 </jstl:if>
+</br></br>
 <input type="button" name="cancel"
 	value="<spring:message code="newspaper.back" />"
 	onclick="javascript: relativeRedir('newspaper/list.do')" />

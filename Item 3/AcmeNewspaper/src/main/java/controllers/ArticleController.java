@@ -12,11 +12,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
 import services.ArticleService;
+import services.CustomerService;
 import services.FollowUpService;
 import services.NewspaperService;
 import services.UserService;
 import domain.Actor;
 import domain.Article;
+import domain.Customer;
 import domain.FollowUp;
 import domain.Newspaper;
 import domain.User;
@@ -41,6 +43,9 @@ public class ArticleController extends AbstractController {
 
 	@Autowired
 	private ActorService		actorService;
+
+	@Autowired
+	private CustomerService		customerService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -76,13 +81,17 @@ public class ArticleController extends AbstractController {
 		final ModelAndView result;
 		Article article;
 		User user;
+		Customer customer;
 		Actor actor;
 		Newspaper newspaper;
 		boolean privateNewspaper;
+		boolean subscribed;
 		Integer userId;
 		Collection<FollowUp> followups;
+		Collection<Newspaper> newspapers;
 
 		userId = null;
+		subscribed = false;
 		privateNewspaper = false;
 		article = this.articleService.findOne(articleId);
 		user = this.userService.UserByArticle(articleId);
@@ -93,18 +102,26 @@ public class ArticleController extends AbstractController {
 		result.addObject("user", user);
 		result.addObject("newspaperId", newspaper.getId());
 		result.addObject("followups", followups);
+		if (newspaper.getPublicity() == false)
+			privateNewspaper = true;
 		if (this.actorService.isLogged()) {
 			actor = this.actorService.findByPrincipal();
 			if (actor instanceof User) {
 				user = (User) actor;
-				if (newspaper.getPublicity() == false)
-					privateNewspaper = true;
 				if (user.getNewspapers().contains(newspaper))
 					userId = actor.getId();
 			}
+			if (actor instanceof Customer) {
+				customer = (Customer) actor;
+				newspapers = this.newspaperService.findByCustomerID(customer.getId());
+				if (newspapers.contains(newspaper))
+					subscribed = true;
+			}
+
 		}
 		result.addObject("privateNewspaper", privateNewspaper);
 		result.addObject("userId", userId);
+		result.addObject("subscribed", subscribed);
 		return result;
 	}
 	// Edition ----------------------------------------------------------------
