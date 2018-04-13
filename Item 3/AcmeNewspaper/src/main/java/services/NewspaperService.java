@@ -80,7 +80,7 @@ public class NewspaperService {
 	public Newspaper save(final Newspaper newspaper) {
 		Newspaper result;
 
-		if (this.configService.isTaboo(newspaper.getTitle()) || this.configService.isTaboo(newspaper.getDescription()) || this.configService.isTaboo(newspaper.getPicture()))
+		if (this.configService.isTaboo(newspaper.getTitle()) || this.configService.isTaboo(newspaper.getDescription()) || (newspaper.getPicture() != null && this.configService.isTaboo(newspaper.getPicture())))
 			newspaper.setTaboo(true);
 
 		if (newspaper.getId() != 0)
@@ -107,10 +107,10 @@ public class NewspaperService {
 		for (final Article a : newspaper.getArticles()){
 			Assert.isTrue(!a.isDraftMode());
 			a.setPublishMoment(new Date(System.currentTimeMillis()));
-			articleService.updateDate(a);
+			this.articleService.updateDate(a);
 		}
 		newspaper.setPublicationDate(new Date(System.currentTimeMillis()));
-		newspaper=newspaperRepository.save(newspaper);
+		newspaper=this.newspaperRepository.save(newspaper);
 		return newspaper;
 	}
 
