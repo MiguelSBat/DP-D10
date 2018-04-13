@@ -18,25 +18,27 @@
 	
 	<!-- User accounts -->
 
-	<bean id="userAccount1" class="security.UserAccount">
-		<property name="username" value="user1" />
-		<property name="password" value="24c9e15e52afc47c225b757e7bee1f9d" />
-		<property name="authorities">
-			<list>
-				<bean class="security.Authority">
-					<property name="authority" value="USER" />
-				</bean>
-			</list>
-		</property>
-	</bean>
 
-	<bean id="userAccount2" class="security.UserAccount">
+
+	<bean id="userAccount1" class="security.UserAccount">
 		<property name="username" value="admin" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
 					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount2" class="security.UserAccount">
+		<property name="username" value="user1" />
+		<property name="password" value="24c9e15e52afc47c225b757e7bee1f9d" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="USER" />
 				</bean>
 			</list>
 		</property>
@@ -78,18 +80,19 @@
 	</bean>
 	
 	
-	<!-- Other domain beans come here -->	
-	<bean id="admin1" class="domain.Administrator">
-	<property name="userAccount" ref="userAccount2" />
+	<!-- Admin -->	
+	<bean id="admin" class="domain.Administrator">
+	<property name="userAccount" ref="userAccount1" />
 		<property name="name" value="Paco" />
 		<property name="surname" value="Samper Villagrán" />
 		<property name="emailAddress" value="ponsavi@acme.org" />
 		<property name="phoneNumber" value="656343000" />
 		<property name="postalAddress" value="Calle Fontenla, 2" />
-	
 	</bean>
+	
+	<!-- Users -->	
 	<bean id="user1" class="domain.User">
-	<property name="userAccount" ref="userAccount1" />
+	<property name="userAccount" ref="userAccount2" />
 		<property name="name" value="Pepón" />
 		<property name="surname" value="Samper Villagrán" />
 		<property name="emailAddress" value="ponsavi@acme.org" />
@@ -224,7 +227,7 @@
 	
 	
 	
-		<!-- Other domain beans come here -->	
+		<!-- Article -->	
 	<bean id="article1" class="domain.Article">
 		<property name="title" value="articulo1" />
 		<property name="summary" value="Sumary" />
@@ -492,6 +495,8 @@
 		<property name="description" value="descripcion 1: Loreugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
 		
 	</bean>	
+	
+	<!-- config -->	
 	<bean id="config" class="domain.Config">
 		<property name="tabooWords">
 			<list>
@@ -504,6 +509,7 @@
 		</property>
 	</bean>	
 	
+	<!-- CreditCard -->	
 	<bean id="creditCard1" class="domain.CreditCard">
 		<property name="holderName" value="Francisco Perez" />
 		<property name="brandName" value="Visa" />
@@ -530,8 +536,8 @@
 			</list>	
 		</property>
 	</bean>
-	
-
+		
+	<!-- Customer -->	
 	<bean id="customer1" class="domain.Customer">
 		<property name="name" value="Pepón" />
 		<property name="surname" value="Samper Villagrán" />
@@ -549,7 +555,7 @@
 
 	
 
-	
+	<!-- FollowUp -->	
 	<bean id="followUp1" class="domain.FollowUp">
 		<property name="title" value="titulodelfollowup1" />
 		<property name="summary" value="sumario" />
@@ -681,6 +687,7 @@
 		
 	</bean>
 	
+	<!-- Newspaper -->	
 	<bean id="newspaper1" class="domain.Newspaper">
 	<property name="title" value="titulo del periodico" />
 	<property name="description" value="descripcion del periodico" />
