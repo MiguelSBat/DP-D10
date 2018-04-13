@@ -89,6 +89,6 @@
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 <jstl:if test="${user.id==userId && article.publishMoment!=null}">
 
-<a href="user/followup/create.do?articleId=${article.id}"><spring:message code="article.text"/></a>
+<a href="user/followup/create.do?articleId=${article.id}"><spring:message code="article.followup"/></a>
 
 </jstl:if>
