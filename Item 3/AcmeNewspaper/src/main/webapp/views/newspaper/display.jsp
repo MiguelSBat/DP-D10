@@ -54,8 +54,8 @@
 			</br>
 					<a href="article/display.do?articleId=${cat.id}" ><jstl:out value="${cat.title}"></jstl:out></a>
 					</br>
-					<a href="user/display.do?articleId=${mapaMegaComplejo[cat.id].id}" ><jstl:out value="${mapaMegaComplejo[cat.id].name}"></jstl:out></a>
-					<a href="user/display.do?articleId=${mapaMegaComplejo[cat.id].id}" ><jstl:out value="${mapaMegaComplejo[cat.id].surname}"></jstl:out></a>
+					<a href="user/display.do?userId=${mapaMegaComplejo[cat.id].id}" ><jstl:out value="${mapaMegaComplejo[cat.id].name}"></jstl:out></a>
+					<a href="user/display.do?userId=${mapaMegaComplejo[cat.id].id}" ><jstl:out value="${mapaMegaComplejo[cat.id].surname}"></jstl:out></a>
 					
 					</br>
 				
@@ -91,6 +91,6 @@
 	<spring:message code="newspaper.error"/>
 </jstl:if>
 <input type="button" name="cancel"
-	value="<spring:message code="newspaper.cancel" />"
-	onclick="javascript: relativeRedir('')" />
+	value="<spring:message code="newspaper.back" />"
+	onclick="javascript: relativeRedir('newspaper/list.do')" />
 	
