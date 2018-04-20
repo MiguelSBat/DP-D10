@@ -58,6 +58,14 @@
 		
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
+		
+		
+		<li><a href="actor/create.do?actorType=USER"><spring:message
+						code="master.page.registerUser" /></a></li>
+						
+		<li><a href="actor/create.do?actorType=CUSTOMER"><spring:message
+					code="master.page.registerCustomer" /></a></li>
+		
 		</security:authorize>
 		
 		<security:authorize access="isAuthenticated()">
@@ -70,13 +78,21 @@
 					<li class="arrow"></li>
 					<security:authorize access="hasRole('ADMIN')">
 					<li><a href="administrator/chirp/list.do"><spring:message code="master.page.administrator.chirps" /></a></li>
+					<li><a href="administrator/newspaper/list.do"><spring:message code="master.page.administrator.newspaper" /></a></li>
 					<li><a href="administrator/article/list.do"><spring:message code="master.page.administrator.articles" /></a></li>
 					<li><a href="administrator/config/display.do"><spring:message code="master.page.administrator.tabooWords" /></a></li>
+					<li><a href="actor/create.do?actorType=ADMIN"><spring:message
+					code="master.page.createAdmin" /></a></li>
+					<li><a href="administrator/dashboard.do"><spring:message
+								code="master.page.administrator.dashboard" /></a></li>
 					</security:authorize>		
 					<security:authorize access="hasRole('USER')">
 					<li><a href="user/chirp/list.do"><spring:message code="master.page.user.chirps.followed" /></a></li>
 					<li><a href="user/chirp/create.do"><spring:message code="chirp.create" /></a></li>
-					</security:authorize>			
+					</security:authorize>		
+					<security:authorize access="hasRole('CUSTOMER')">
+					<li><a href="customer/creditCard/create.do"><spring:message code="master.page.creditcard.create" /></a></li>
+					</security:authorize>	
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>

@@ -33,6 +33,9 @@ public class NewspaperService {
 	@Autowired
 	private ArticleService		articleService;
 
+	@Autowired
+	private ConfigService		configService;
+
 
 	//Constructors
 	public NewspaperService() {
@@ -44,6 +47,7 @@ public class NewspaperService {
 		final Collection<Article> articles = new ArrayList<>();
 
 		result = new Newspaper();
+		result.setTaboo(false);
 		result.setArticles(articles);
 		return result;
 	}
@@ -76,6 +80,9 @@ public class NewspaperService {
 	public Newspaper save(final Newspaper newspaper) {
 		Newspaper result;
 
+		if (this.configService.isTaboo(newspaper.getTitle()) || this.configService.isTaboo(newspaper.getDescription()) || (newspaper.getPicture() != null && this.configService.isTaboo(newspaper.getPicture())))
+			newspaper.setTaboo(true);
+
 		if (newspaper.getId() != 0)
 			result = this.newspaperRepository.save(newspaper);
 		else {
@@ -94,18 +101,19 @@ public class NewspaperService {
 		newspaper = this.newspaperRepository.findOne(newspaperId);
 		final User u = (User) this.actorService.findByPrincipal();
 		Assert.isTrue(u.getNewspapers().contains(newspaper));
-		Assert.isTrue(newspaper.getPublicationDate()==null);
-	
+		Assert.isTrue(newspaper.getPublicationDate() == null);
+		Assert.isTrue(!newspaper.getArticles().isEmpty());
 		Assert.notNull(newspaper);
-		for(Article a:newspaper.getArticles()){
+		for (final Article a : newspaper.getArticles()){
 			Assert.isTrue(!a.isDraftMode());
+			a.setPublishMoment(new Date(System.currentTimeMillis()));
+			this.articleService.updateDate(a);
 		}
 		newspaper.setPublicationDate(new Date(System.currentTimeMillis()));
-		
+		newspaper=this.newspaperRepository.save(newspaper);
 		return newspaper;
 	}
-	
-	
+
 	public Newspaper findOne(final int newspaperId) {
 		Newspaper result;
 
@@ -131,5 +139,84 @@ public class NewspaperService {
 
 		return result;
 	}
+	public Collection<Newspaper> findTaboo() {
+		Collection<Newspaper> newspapers;
 
+		newspapers = this.newspaperRepository.findTaboo();
+
+		return newspapers;
+	}
+
+	public Collection<Newspaper> findByCreditCardID(final int cardID) {
+		return this.newspaperRepository.findByCreditCardID(cardID);
+	}
+
+	public Collection<Newspaper> findByCustomerID(final int customerID) {
+		return this.newspaperRepository.findByCustomerID(customerID);
+	}
+
+	//DASHBOARD
+
+	public Double averageArticlesPerNewspaper() {
+		return this.newspaperRepository.averageArticlesPerNewspaper();
+	}
+
+	public Double standardArticlesPerNewspaper() {
+		return this.newspaperRepository.standardArticlesPerNewspaper();
+	}
+
+	public Collection<Newspaper> findNewspapersWithMoreArticlesThanAverage() {
+		final Collection<Newspaper> result = this.newspaperRepository.findNewspapersWithMoreArticlesThanAverage();
+		return result;
+	}
+
+	public Collection<Newspaper> findNewspapersWithLessArticlesThanAverage() {
+		final Collection<Newspaper> result = this.newspaperRepository.findNewspapersWithLessArticlesThanAverage();
+		return result;
+	}
+
+	public Double ratioPublicVsPrivate() {
+		return this.newspaperRepository.ratioPublicVsPrivate();
+	}
+
+	public Double averageArticlesPerPrivateNewspaper() {
+		return this.newspaperRepository.averageArticlesPerPrivateNewspaper();
+	}
+
+	public Double averageArticlesPerPublicNewspaper() {
+		return this.newspaperRepository.averageArticlesPerPublicNewspaper();
+	}
+
+	public Collection<Newspaper> findNewPrivateByUser(final int id) {
+		final Collection<Newspaper> result = this.newspaperRepository.findNewPrivateByUser(id);
+		return result;
+	}
+
+	public Collection<Newspaper> findNewPublicByUser(final int id) {
+		final Collection<Newspaper> result = this.newspaperRepository.findNewPublicByUser(id);
+		return result;
+	}
+
+	public Double avgRatioPrivateVsPublicPerUser() {
+		final Collection<User> users = this.userService.findAll();
+		Collection<Newspaper> priv = new ArrayList<Newspaper>();
+		Collection<Newspaper> pub = new ArrayList<Newspaper>();
+		Double aux = 0.0;
+		Double d = 1.0;
+		for (final User u : users) {
+			priv = this.findNewPrivateByUser(u.getId());
+			pub = this.findNewPublicByUser(u.getId());
+
+			d = 1.0 * pub.size();
+
+			if (d == 0)
+				d = 1.0;
+
+			aux = aux + (100 * priv.size() / d);
+		}
+		return aux / users.size();
+
+	}
+
+	//dashboard
 }

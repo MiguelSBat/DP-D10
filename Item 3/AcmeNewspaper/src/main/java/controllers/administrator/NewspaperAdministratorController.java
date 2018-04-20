@@ -1,6 +1,8 @@
 
 package controllers.administrator;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import services.ActorService;
 import services.NewspaperService;
 import controllers.AbstractController;
+import domain.Article;
 import domain.Newspaper;
 
 @Controller
@@ -32,6 +35,20 @@ public class NewspaperAdministratorController extends AbstractController {
 
 	// Listing ----------------------------------------------------------------
 
+	// Listing ----------------------------------------------------------------
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView list() {
+		ModelAndView result;
+		Collection<Newspaper> newspapers;
+
+		newspapers = this.newspaperService.findTaboo();
+		result = new ModelAndView("newspaper/list");
+		result.addObject("newspapers", newspapers);
+		result.addObject("requestURI", "administrator/newspaper/list.do");
+
+		return result;
+	}
 	// Delete ---------------------------------------------------------------
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public ModelAndView delete(final int newspaperId) {

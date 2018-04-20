@@ -29,11 +29,11 @@
 	
 	<form:hidden path="id" />
 	<form:hidden path="version" /> 
-	
-	<acme:textarea code="newspaper.title" path="title"/>
-	
-	<acme:textbox code="newspaper.description" path="description"/>
-
+	<br />
+	<acme:textbox code="newspaper.title" path="title"/>
+	<br />
+	<acme:textarea code="newspaper.description" path="description"/>
+	<br />
 <%-- 	<spring:message code="newspaper.publicationDate" var="publicationDate"/>
 	<form:label path="publicationDate">${publicationDate}</form:label>
 	<form:input path="publicationDate" placeholder="dd/mm/yyyy"/>

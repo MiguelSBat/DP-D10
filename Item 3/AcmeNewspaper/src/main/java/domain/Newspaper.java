@@ -8,7 +8,9 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -19,6 +21,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
+@Table(indexes = {
+	@Index(columnList = "taboo")
+})
 public class Newspaper extends DomainEntity {
 
 	private String	title;
@@ -26,6 +31,7 @@ public class Newspaper extends DomainEntity {
 	private Date	publicationDate;
 	private String	picture;
 	private boolean	publicity;
+	private boolean	taboo;
 
 
 	@NotBlank
@@ -94,6 +100,14 @@ public class Newspaper extends DomainEntity {
 
 	public void removeArticle(final Article article) {
 		this.articles.remove(article);
+	}
+
+	public boolean isTaboo() {
+		return this.taboo;
+	}
+
+	public void setTaboo(final boolean taboo) {
+		this.taboo = taboo;
 	}
 
 }

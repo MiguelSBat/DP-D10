@@ -26,4 +26,5 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 
 	@Query("select a from Article a where a.taboo=1")
 	Collection<Article> findTaboo();
+
 }

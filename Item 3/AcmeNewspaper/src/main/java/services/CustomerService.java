@@ -2,6 +2,7 @@
 package services;
 
 import java.util.Collection;
+import java.util.HashSet;
 
 import javax.transaction.Transactional;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import repositories.CustomerRepository;
+import domain.CreditCard;
 import domain.Customer;
 
 @Service
@@ -30,6 +32,7 @@ public class CustomerService {
 		Customer result;
 
 		result = new Customer();
+		result.setCreditCard(new HashSet<CreditCard>());
 
 		return result;
 	}
@@ -66,6 +69,10 @@ public class CustomerService {
 
 	public void flush() {
 		this.customerRepository.flush();
+	}
+
+	public Double ratioSubscriptorsVScustomer() {
+		return this.customerRepository.ratioSubscriptorsVScustomer();
 	}
 
 }

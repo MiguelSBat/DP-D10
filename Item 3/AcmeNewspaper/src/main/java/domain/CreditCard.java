@@ -8,6 +8,7 @@ import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
 import org.hibernate.validator.constraints.NotBlank;
@@ -35,8 +36,8 @@ public class CreditCard extends DomainEntity {
 		return this.brandName;
 	}
 
-	@NotNull
 	@CreditCardNumber
+	@Pattern(regexp = "[0-9]{16}")
 	public String getNumber() {
 		return this.number;
 	}
@@ -86,6 +87,7 @@ public class CreditCard extends DomainEntity {
 
 
 	@ManyToMany
+	@NotNull
 	public Collection<Newspaper> getNewspapers() {
 		return this.newspapers;
 	}
